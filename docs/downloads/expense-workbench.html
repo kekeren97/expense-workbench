@@ -1,0 +1,1412 @@
+<!doctype html>
+<html lang="zh-CN">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width,initial-scale=1">
+  <meta name="theme-color" content="#163e35">
+  <meta name="description" content="智能财务预审工作台：员工咨询、凭证整理、报销预审与问题分析。交互演示版。">
+  <title>报销有数 · 智能财务预审工作台</title>
+  <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 40 40'%3E%3Crect width='40' height='40' rx='12' fill='%23163e35'/%3E%3Cpath d='M12 10h16v22l-4-2-4 2-4-2-4 2zM17 17h6m-6 6h6' fill='none' stroke='%23fff' stroke-width='2'/%3E%3C/svg%3E">
+  <style>:root{--ink:#213c34;--text:#263e36;--muted:#6a7872;--line:#e5eae5;--paper:#fff;--canvas:#f5f7f3;--green:#25664f;--green-dark:#163e35;--sage:#e9f1e7;--mint:#a8c7a4;--orange:#a75b20;--orange-bg:#fff1df;--red:#b34d42;--red-bg:#fbefed;--radius:14px;--font:-apple-system,BlinkMacSystemFont,"PingFang SC","Microsoft YaHei",sans-serif}
+*{box-sizing:border-box}body{margin:0;background:var(--canvas);color:var(--text);font:14px/1.6 var(--font);-webkit-font-smoothing:antialiased}button,input,select,textarea{font:inherit}button,a,input,select,textarea{-webkit-tap-highlight-color:transparent}button{cursor:pointer}button{color:inherit}button:disabled{opacity:.45;cursor:not-allowed}button,a{transition:background-color .18s,color .18s,border-color .18s}a{color:var(--green);text-decoration:none}button:focus-visible,a:focus-visible,input:focus-visible,select:focus-visible,textarea:focus-visible{outline:3px solid #88b6a0;outline-offset:3px}input,select,textarea{border:1px solid #d8e1d9;border-radius:8px;background:#fff;padding:10px 12px;color:var(--text);min-width:0}input::placeholder,textarea::placeholder{color:#68766b}textarea{resize:vertical}svg.icon{width:19px;height:19px;flex-shrink:0;fill:none;stroke:currentColor;stroke-width:1.7;stroke-linecap:round;stroke-linejoin:round}h1,h2,h3,p{margin:0}h1{font-size:27px;letter-spacing:-.025em;font-weight:650;line-height:1.35}h2{font-size:16px;font-weight:650}h3{font-size:14px;font-weight:650}.muted{color:var(--muted)}.small{font-size:12px}.num{font-variant-numeric:tabular-nums}.skip{position:fixed;top:-60px;left:20px;background:#fff;padding:12px;z-index:100}.skip:focus{top:10px}.sidebar{width:224px;position:fixed;inset:0 auto 0 0;background:#fdfefb;border-right:1px solid var(--line);display:flex;flex-direction:column;z-index:20;padding:28px 18px 18px}.brand{display:flex;align-items:center;gap:10px;padding:0 12px 25px;font-size:22px;font-weight:700;letter-spacing:-1px}.brand-mark{height:36px;width:36px;border-radius:11px;background:var(--green-dark);color:#fff;display:grid;place-items:center}.brand-mark .icon{height:23px;width:23px}.brand small{display:block;font-size:11px;letter-spacing:1px;font-weight:500;color:var(--muted);line-height:1.4}.workspace{margin:0 6px 27px;padding:12px;border:1px solid var(--line);border-radius:10px;display:flex;align-items:center;gap:9px;font-size:12px}.workspace .square{height:28px;width:28px;border-radius:7px;background:var(--sage);display:grid;place-items:center;color:var(--green);font-weight:600}.workspace .icon{margin-left:auto;width:14px}.nav-label{font-size:11px;letter-spacing:1.6px;color:#68776b;margin:0 14px 9px}.nav-group{display:grid;gap:5px}.nav-link{border:0;width:100%;display:flex;gap:12px;align-items:center;background:transparent;border-radius:9px;padding:12px 14px;color:#66786e;text-align:left;font-size:13px}.nav-link:hover{background:#f0f4ed;color:var(--green)}.nav-link.active{background:var(--green-dark);color:#fff;font-weight:550}.nav-count{margin-left:auto;font-size:11px;background:#e7ede5;color:#526a5c;border-radius:4px;padding:0 6px}.nav-link.active .nav-count{background:#356052;color:#e5efe6}.nav-divider{height:1px;background:var(--line);margin:23px 14px}.sidebar-bottom{margin-top:auto;padding-top:35px}.connection-note{margin:0 5px 18px;padding:15px 13px;border-radius:10px;background:#edf3e8;font-size:11px;color:#60745e}.connection-note strong{display:flex;align-items:center;gap:7px;font-weight:600;color:#3d6047;font-size:12px;margin-bottom:5px}.dot{display:inline-block;width:6px;height:6px;border-radius:50%;background:currentColor}.profile{display:flex;align-items:center;gap:10px;border-top:1px solid var(--line);padding:17px 8px 0}.avatar{width:33px;height:33px;border-radius:50%;display:inline-grid;place-items:center;background:#e9eee5;color:#58705b;font-size:12px;flex-shrink:0}.profile-text{font-size:12px}.profile-text small{display:block;color:var(--muted);font-size:11px}.profile .icon{margin-left:auto;color:var(--muted)}.app-shell{margin-left:224px;min-height:100vh}.topbar{height:76px;background:rgba(255,255,255,.8);border-bottom:1px solid var(--line);display:flex;align-items:center;justify-content:space-between;padding:0 34px;gap:20px}.breadcrumb{display:flex;align-items:center;gap:12px;font-size:12px;color:#68776b}.breadcrumb strong{font-weight:500;color:var(--text)}.top-actions{display:flex;align-items:center;gap:18px}.demo-tag{color:#657561;background:#f0f4ec;font-size:11px;border:1px solid #dfe7d9;border-radius:4px;padding:3px 7px}.btn{display:inline-flex;align-items:center;justify-content:center;gap:7px;padding:9px 15px;border:1px solid #dce3da;border-radius:7px;background:#fff;font-weight:500;font-size:12px;white-space:nowrap;min-height:38px}.btn:hover{background:#f1f5ed;border-color:#c7d5c5}.btn.primary{color:#fff;background:var(--green-dark);border-color:var(--green-dark)}.btn.primary:hover{background:#295b49}.btn.subtle{border:0;background:transparent;padding:7px;color:var(--green)}.btn.danger{border-color:#e8c9c5;color:var(--red)}.btn .icon{height:16px;width:16px}.icon-btn{width:35px;height:35px;display:grid;place-items:center;border:0;background:transparent;border-radius:6px}.icon-btn:hover{background:var(--sage)}.mobile-menu{display:none}main{padding:32px 34px 20px;max-width:1620px;margin:0 auto;min-height:calc(100vh - 130px)}.page-heading{display:flex;align-items:flex-start;justify-content:space-between;gap:20px;margin-bottom:27px}.page-heading p{font-size:12px;color:var(--muted);margin-top:8px}.heading-actions{display:flex;gap:10px;align-items:center;padding-top:3px}.compact-select{padding:8px 30px 8px 11px;font-size:12px;height:38px}.welcome-line{color:var(--muted);font-size:12px;margin-bottom:8px}.stats-row{display:grid;grid-template-columns:repeat(4,minmax(0,1fr));border:1px solid var(--line);border-radius:var(--radius);background:#fff;margin-bottom:22px;padding:23px 0}.stat{padding:0 23px;border-right:1px solid var(--line)}.stat:last-child{border:0}.stat-top{display:flex;align-items:center;justify-content:space-between;color:var(--muted);font-size:12px;margin-bottom:12px}.stat-top .icon{width:17px;height:17px;color:#8c9b8a}.stat-value{font-size:31px;line-height:1.2;letter-spacing:-.035em;font-weight:600;color:var(--ink)}.stat-value .unit{font-size:14px;margin-left:5px;font-weight:400;color:var(--muted);letter-spacing:0}.stat-value .currency{font-size:19px;margin-right:4px;font-weight:500}.stat-foot{margin-top:11px;display:flex;align-items:center;gap:7px;font-size:11px;color:var(--muted)}.stat-foot b{color:var(--green);font-weight:500}.stat-foot .warn{color:var(--orange)}.two-col{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(305px,1fr);gap:22px;margin-bottom:22px}.panel{background:var(--paper);border:1px solid var(--line);border-radius:var(--radius);min-width:0}.panel-head{display:flex;justify-content:space-between;align-items:center;gap:12px;padding:21px 23px 0}.panel-head p{font-size:11px;color:var(--muted);margin-top:3px}.panel-head .btn{font-size:11px}.legend{display:flex;gap:17px;align-items:center;font-size:11px;color:var(--muted)}.legend i{display:inline-block;width:7px;height:7px;border-radius:2px;margin-right:6px;background:var(--green)}.legend i.soft{background:#c6d8ba}.trend-chart{width:100%;height:218px;display:block;padding:16px 17px 0}.trend-chart text{font:10px var(--font);fill:#667565}.chart-foot{display:flex;justify-content:space-between;padding:13px 24px 18px;gap:10px;font-size:11px;color:var(--muted);border-top:1px solid #f1f3ed;margin-top:5px}.chart-foot b{color:var(--green);font-weight:500}.category-content{display:flex;align-items:center;gap:25px;padding:26px 24px 28px;min-height:220px}.donut-wrap{width:148px;height:148px;position:relative;flex-shrink:0}.donut-wrap svg{width:100%;height:100%;transform:rotate(-90deg)}.donut-center{position:absolute;inset:0;display:grid;place-content:center;text-align:center;font-size:11px;color:var(--muted)}.donut-center strong{font-size:24px;line-height:1.3;font-weight:600;color:var(--ink)}.category-legend{width:100%;display:grid;gap:14px;font-size:11px}.category-line{display:flex;align-items:center;gap:8px}.category-line .color-dot{width:6px;height:6px;border-radius:2px}.category-line strong{margin-left:auto;font-size:11px;font-weight:500}.category-note{margin:0 23px 19px;font-size:11px;color:var(--muted);padding-top:15px;border-top:1px solid #eef1eb}.wide-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(305px,1fr);gap:22px;margin-bottom:22px}.pending-panel{background:#eef3e9;border:1px solid #e0e8d9;border-radius:var(--radius);padding:22px 23px}.pending-head{display:flex;align-items:center;justify-content:space-between;margin-bottom:20px}.pending-head h2{display:flex;align-items:center;gap:8px}.pending-head .icon{color:var(--green);height:18px;width:18px}.pending-head span{font-size:11px;color:#60705c}.queue-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:15px}.queue{padding:0 18px;border-right:1px solid #dbe3d3}.queue:first-child{padding-left:0}.queue:last-child{border:0}.queue strong{display:block;font-size:26px;line-height:1.1;font-weight:600;color:var(--ink);margin-bottom:9px}.queue span{font-size:11px;color:#60705c}.queue .queue-action{margin-top:12px;border:0;background:none;padding:0;display:flex;gap:5px;align-items:center;font-size:11px;color:var(--green)}.queue-action .icon{width:13px;height:13px}.insight-panel{padding:20px 23px;background:var(--green-dark);color:#fff;border-radius:var(--radius);display:flex;flex-direction:column;justify-content:space-between}.insight-panel .insight-head{display:flex;gap:8px;align-items:center;font-size:12px;color:#c8dcc9}.insight-panel .insight-head .icon{height:17px;width:17px}.insight-panel p{font-size:15px;line-height:1.7;margin:12px 0}.insight-panel b{font-weight:550;color:#d3e8ae}.insight-panel button{border:0;background:none;color:#d2e3c7;font-size:11px;text-align:left;display:flex;justify-content:space-between;align-items:center;padding:0}.insight-panel button .icon{height:15px;width:15px}.table-toolbar{display:flex;gap:12px;justify-content:space-between;padding:17px 23px;border-bottom:1px solid var(--line);align-items:center}.tabs{display:flex;gap:18px;align-items:center}.tab{border:0;background:none;font-size:11px;padding:4px 0;color:var(--muted);position:relative}.tab.active{color:var(--green);font-weight:600}.tab.active:after{content:"";height:2px;background:var(--green);position:absolute;bottom:-18px;left:0;right:0}.tab span{margin-left:4px;border-radius:3px;padding:1px 4px;font-size:11px;background:#edf2e8}.search{position:relative;display:flex;align-items:center;min-width:150px;max-width:300px}.search .icon{position:absolute;left:10px;width:15px;height:15px;color:#7e8e7d}.search input{font-size:11px;padding:7px 10px 7px 32px;width:100%;background:#fcfdfb}.table-wrap{overflow:auto}table{border-collapse:collapse;width:100%;text-align:left;white-space:nowrap;font-size:11px}th{font-size:11px;font-weight:500;color:#778577;background:#fafbf8;padding:12px 18px}td{padding:14px 18px;border-top:1px solid #eef1eb}th:first-child,td:first-child{padding-left:23px}th:last-child,td:last-child{padding-right:23px}tbody tr:hover{background:#fafcf7}.cell-title{font-weight:500;font-size:11px;color:#354e40}.cell-sub{display:block;font-size:11px;color:#667565;margin-top:3px}.person-cell{display:flex;align-items:center;gap:7px}.person-cell .avatar{width:25px;height:25px;font-size:11px}.money{font-weight:600;font-size:11px;letter-spacing:.2px}.badge{display:inline-flex;align-items:center;gap:4px;border-radius:4px;font-size:11px;line-height:1.4;padding:4px 6px;white-space:nowrap;background:#eef3e8;color:#57704d}.badge.warn{background:var(--orange-bg);color:var(--orange)}.badge.red{background:var(--red-bg);color:var(--red)}.badge.gray{background:#f0f2ef;color:#6a7467}.table-action{border:0;background:none;font-size:11px;color:var(--green);padding:5px 0}.table-bottom{padding:13px 23px;display:flex;align-items:center;justify-content:space-between;border-top:1px solid var(--line);font-size:11px;color:var(--muted)}.pagination{display:flex;gap:6px;align-items:center}.pagination button{border:1px solid var(--line);background:#fff;border-radius:4px;width:27px;height:27px;font-size:11px}.pagination button.active{background:var(--green-dark);color:#fff;border-color:var(--green-dark)}.hot-list{padding:13px 23px 5px}.hot-item{display:block;padding:13px 0;border-bottom:1px solid #edf0e9}.hot-item:last-child{border:0}.hot-top{display:flex;gap:10px;align-items:center;font-size:11px}.hot-rank{font-size:11px;color:#667565;width:12px}.hot-top strong{font-weight:500;flex:1}.hot-top span:last-child{font-size:11px;color:var(--muted)}.bar-track{margin-top:9px;margin-left:22px;height:4px;background:#eff3e9;border-radius:4px;overflow:hidden}.bar-fill{height:100%;background:#7eaa7b;border-radius:4px}.hot-foot{padding:12px 23px 20px;font-size:11px;color:var(--muted)}.bottom-grid{display:grid;grid-template-columns:minmax(0,1.65fr) minmax(305px,1fr);gap:22px}.app-footer{display:flex;justify-content:space-between;gap:12px;padding:8px 35px 22px;max-width:1620px;margin:0 auto;color:#667565;font-size:11px}.full-panel{margin-bottom:22px}.filter-line{display:flex;gap:10px;align-items:center;flex-wrap:wrap;padding:18px 23px;border-bottom:1px solid var(--line)}.filter-line .search{flex:1;max-width:none}.filter-line select{font-size:12px;padding:7px 10px}.empty{padding:55px 20px;text-align:center;color:var(--muted)}.empty .icon{width:36px;height:36px;color:#a4b49e;margin-bottom:10px}.empty h3{color:var(--text);margin-bottom:6px}.notice{display:flex;gap:10px;align-items:flex-start;background:#edf3e8;border:1px solid #dfe8d7;border-radius:9px;padding:14px 17px;color:#5b7255;font-size:12px;margin-bottom:22px}.notice .icon{width:17px;height:17px;margin-top:2px}.notice.warning{background:#fff6e9;border-color:#efdfc4;color:#95642e}.content-grid{display:grid;grid-template-columns:minmax(0,1.55fr) minmax(280px,1fr);gap:22px}.form-panel{padding:25px}.form-panel h2{margin-bottom:5px}.form-panel>p{font-size:12px;color:var(--muted);margin-bottom:22px}.form-grid{display:grid;grid-template-columns:1fr 1fr;gap:18px}.field{display:flex;flex-direction:column;gap:7px;font-size:12px}.field label{color:#52694e;font-weight:500}.field input,.field select{width:100%;font-size:13px}.field.full{grid-column:1/-1}.field-help{font-size:11px;color:var(--muted)}.required{color:var(--red)}.form-actions{display:flex;gap:10px;justify-content:flex-end;margin-top:23px;padding-top:20px;border-top:1px solid var(--line)}.dropzone{border:1px dashed #bdccb4;border-radius:10px;padding:24px;text-align:center;background:#fafcf7;position:relative;cursor:pointer}.dropzone:hover{background:#f0f6e9}.dropzone .icon{width:29px;height:29px;margin-bottom:8px;color:#779168}.dropzone strong{display:block;font-size:13px;font-weight:500}.dropzone p{font-size:11px;color:var(--muted);margin-top:5px}.dropzone input{position:absolute;inset:0;width:100%;height:100%;opacity:0;cursor:pointer}.dropzone:focus-within{outline:3px solid #88b6a0;outline-offset:3px}.file-list{display:grid;gap:7px;margin-top:10px}.file-chip{display:flex;gap:8px;align-items:center;font-size:11px;padding:9px 10px;background:#f0f4ea;border-radius:6px}.file-chip span{overflow:hidden;text-overflow:ellipsis;white-space:nowrap;flex:1}.file-chip small{color:var(--muted)}.check-list{display:grid;gap:18px;padding:23px}.check-row{display:flex;gap:12px;align-items:flex-start}.check-row>.icon{color:var(--green);width:19px;height:19px;margin-top:1px}.check-row h3{font-size:12px;margin-bottom:4px}.check-row p{font-size:11px;color:var(--muted)}.chat-shell{min-height:550px;display:flex;flex-direction:column}.chat-header{padding:21px 24px;border-bottom:1px solid var(--line);display:flex;gap:12px;align-items:center}.bot-avatar{width:36px;height:36px;border-radius:10px;background:var(--green-dark);color:#d3e7ba;display:grid;place-items:center;flex-shrink:0}.chat-header p{font-size:11px;color:var(--muted)}.chat-messages{padding:24px;display:grid;gap:20px;max-height:520px;overflow:auto;flex:1;align-content:start}.message{display:flex;gap:10px;align-items:flex-start}.message .bot-avatar{width:28px;height:28px;border-radius:8px}.message .bot-avatar .icon{height:16px;width:16px}.bubble{background:#f2f5ed;border-radius:0 11px 11px 11px;padding:15px 17px;max-width:90%;font-size:12px;line-height:1.9;white-space:pre-wrap}.message.user{justify-content:flex-end}.message.user .bubble{background:#e5efdf;border-radius:11px 0 11px 11px}.source-tag{display:block;margin-top:10px;padding-top:8px;border-top:1px solid #dfe7d7;color:#6a7d61;font-size:11px}.chat-input{padding:18px 23px;border-top:1px solid var(--line)}.chat-input form{display:flex;gap:9px}.chat-input input{flex:1;font-size:12px}.chat-input>p{font-size:11px;color:var(--muted);margin-top:8px}.suggestions{display:flex;gap:8px;flex-wrap:wrap;padding:0 23px 17px}.suggestion{border:1px solid #dce5d4;border-radius:6px;padding:6px 9px;background:#fff;font-size:11px;color:#5f7855}.suggestion:hover{background:#eff4e9}.topic-list{padding:10px 23px 20px}.topic-item{display:block;width:100%;border:0;border-bottom:1px solid var(--line);padding:16px 0;background:none;text-align:left;font-size:12px}.topic-item:hover{color:var(--green)}.topic-item small{display:block;font-size:11px;color:var(--muted);margin-top:5px}.knowledge-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}.doc-card{padding:23px;display:flex;flex-direction:column;gap:16px}.doc-top{display:flex;align-items:center;justify-content:space-between}.doc-icon{width:38px;height:43px;background:#eef3e8;border:1px solid #e1e8d9;border-radius:5px;display:grid;place-items:center;color:var(--green)}.doc-card p{font-size:11px;color:var(--muted);line-height:1.8;min-height:40px}.doc-bottom{display:flex;align-items:center;justify-content:space-between;font-size:11px;color:var(--muted);padding-top:13px;border-top:1px solid var(--line);margin-top:auto}.integration-list{padding:0 23px}.integration{display:flex;align-items:center;gap:17px;padding:23px 0;border-bottom:1px solid var(--line)}.integration:last-child{border:0}.integration>.icon{width:24px;height:24px;color:#6f8766}.integration div{flex:1}.integration p{font-size:11px;color:var(--muted);margin-top:5px}.report-summary{padding:23px;display:grid;grid-template-columns:repeat(3,1fr);gap:15px;border-bottom:1px solid var(--line)}.report-summary span{display:block;font-size:11px;color:var(--muted);margin-bottom:6px}.report-summary strong{font-size:22px;font-weight:600}.analysis-row{padding:23px;display:grid;grid-template-columns:1fr 1fr;gap:24px}.analysis-row p{font-size:12px;color:var(--muted);margin-top:8px;line-height:1.9}.detail-dialog{margin:0 0 0 auto;height:100dvh;max-height:100dvh;width:540px;max-width:100%;border:0;background:#fff;padding:0;color:var(--text);box-shadow:-12px 0 40px #142d2517}.detail-dialog::backdrop{background:#17352936}.detail-head{position:sticky;top:0;z-index:1;background:#fff;border-bottom:1px solid var(--line);padding:24px;display:flex;justify-content:space-between;align-items:center}.detail-head p{font-size:11px;color:var(--muted);margin-top:4px}.detail-body{padding:24px}.detail-total{padding:22px;background:#f0f4eb;border-radius:10px;margin-bottom:25px}.detail-total p{font-size:11px;color:var(--muted)}.detail-total strong{display:block;font-size:32px;font-weight:600;margin:6px 0 12px}.detail-fields{display:grid;grid-template-columns:1fr 1fr;gap:18px;margin-bottom:25px}.detail-fields dt{font-size:11px;color:var(--muted)}.detail-fields dd{font-size:12px;margin:5px 0 0}.detail-section{border-top:1px solid var(--line);padding-top:20px;margin-top:22px}.detail-section h3{margin-bottom:14px}.review-line{padding:10px 0;display:flex;gap:8px;align-items:flex-start;font-size:12px}.review-line .icon{color:var(--green);height:16px;width:16px;margin-top:2px}.review-line.warn .icon{color:var(--orange)}.timeline{padding:0 0 0 17px;margin:0}.timeline li{padding:0 0 17px 7px;font-size:11px}.timeline time{display:block;color:var(--muted);font-size:11px;margin-top:3px}.detail-actions{position:sticky;bottom:0;padding:18px 24px;background:#fff;border-top:1px solid var(--line);display:flex;gap:9px;justify-content:flex-end}.reject-form{padding:0 24px 20px}.reject-form label{display:block;font-size:12px;margin-bottom:7px}.reject-form textarea{width:100%}.doc-body{white-space:pre-wrap;font-size:13px;line-height:1.9}.toast{position:fixed;bottom:26px;left:calc(50% + 112px);transform:translate(-50%,15px);opacity:0;pointer-events:none;background:#163e35;color:#fff;border-radius:9px;padding:12px 21px;font-size:12px;z-index:100;max-width:90vw;box-shadow:0 8px 25px #112f2726;transition:opacity .2s,transform .2s}.toast.visible{opacity:1;transform:translate(-50%,0)}.error-text{color:var(--red);font-size:11px;margin-top:9px}.steps{display:flex;gap:0;margin-bottom:24px}.step{flex:1;font-size:11px;color:#667565;display:flex;gap:8px;align-items:center}.step:not(:last-child):after{content:"";height:1px;flex:1;background:#dbe3d4;margin:0 17px 0 7px}.step b{display:grid;place-items:center;width:24px;height:24px;background:#e7eede;border-radius:50%;color:#687e5a;font-size:11px;font-weight:500}.step.active{color:var(--green)}.step.active b{color:#fff;background:var(--green)}.employee-welcome{background:var(--green-dark);color:#fff;border-radius:14px;padding:30px;margin-bottom:24px;display:flex;justify-content:space-between;align-items:center;gap:22px}.employee-welcome h1{font-size:25px}.employee-welcome p{font-size:12px;color:#c6d9be;margin-top:9px}.employee-welcome .btn{background:#dbe9c5;color:var(--green-dark);border-color:#dbe9c5}.service-actions{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));margin-bottom:25px;gap:17px}.service-action{background:#fff;border:1px solid var(--line);border-radius:12px;display:flex;text-align:left;padding:22px;gap:14px;align-items:center}.service-action>.icon{width:25px;height:25px;color:var(--green)}.service-action h3{font-size:13px}.service-action p{font-size:11px;color:var(--muted);margin-top:5px}.service-action:hover{border-color:#a9bea0;background:#fafff4}.service-action .arrow{margin-left:auto;flex-shrink:0}.report-ready{padding:32px;text-align:center}.report-ready>.icon{width:50px;height:50px;color:var(--green);margin-bottom:18px}.report-ready h2{font-size:20px}.report-ready p{font-size:12px;color:var(--muted);margin-top:10px}.report-ready .heading-actions{justify-content:center;margin-top:23px}.file-preview{width:100%;max-height:380px;object-fit:contain;border:1px solid var(--line);border-radius:8px}.preformatted{white-space:pre-wrap;overflow-wrap:anywhere}.stack{display:grid;gap:20px}.link-button{border:0;background:none;color:var(--green);padding:0;font-size:inherit;text-align:left}.stat-as-btn{border:0;background:none;padding:0;text-align:left}.menu-scrim{display:none}.receipt-warning{font-size:11px;color:var(--orange);padding:8px 0}.report-meta{font-size:12px;color:var(--muted);margin:12px 0 24px}.filter-label{font-size:11px;color:var(--muted)}
+@media(min-width:1550px){main{padding-top:38px}.trend-chart{height:236px}.category-content{min-height:239px}.stat{padding:0 28px}.stat-value{font-size:34px}}
+@media(max-width:1200px){.sidebar{width:196px;padding-left:12px;padding-right:12px}.app-shell{margin-left:196px}.topbar{padding:0 25px}main{padding:27px 25px}.two-col,.wide-grid,.bottom-grid{grid-template-columns:minmax(0,1.35fr) minmax(290px,1fr);gap:17px}.category-content{gap:15px;padding:25px 17px}.donut-wrap{height:128px;width:128px}.stat{padding:0 18px}.stat-value{font-size:27px}.toast{left:calc(50% + 98px)}.table-toolbar{gap:10px}.table-toolbar .search{max-width:170px}.tabs{gap:13px}.queue{padding:0 12px}}
+@media(max-width:1020px){.two-col,.bottom-grid{grid-template-columns:1fr}.wide-grid{grid-template-columns:1.2fr 1fr}.category-content{justify-content:center;min-height:200px}.category-legend{max-width:260px}.category-note{text-align:center}.stat{padding:0 14px}.stat-value{font-size:24px}.stat-top{font-size:11px}.heading-actions{flex-wrap:wrap;justify-content:flex-end}.page-heading{gap:15px}.content-grid{grid-template-columns:1fr}.knowledge-grid{grid-template-columns:repeat(2,minmax(0,1fr))}.trend-chart{height:230px}.service-action{padding:17px;gap:10px}.service-action p{font-size:11px}}
+@media(max-width:760px){.sidebar{transform:translateX(-100%);width:224px;transition:transform .2s}.sidebar.open{transform:translateX(0)}.menu-scrim.open{display:block;position:fixed;inset:0;z-index:19;background:#17352955;border:0}.app-shell{margin:0}.topbar{height:65px;padding:0 18px;gap:10px}.mobile-menu{display:grid}.breadcrumb{gap:8px;font-size:11px}.breadcrumb>span,.breadcrumb>.slash{display:none}.top-actions{gap:8px}.top-actions .demo-tag{display:none}.top-actions>.avatar{display:none}.top-actions .btn{padding:7px 10px;font-size:11px;min-height:34px}main{padding:24px 18px}h1{font-size:23px}.page-heading{display:block;margin-bottom:20px}.heading-actions{justify-content:flex-start;margin-top:16px;gap:8px}.heading-actions select{flex:1}.page-heading p{font-size:11px}.stats-row{grid-template-columns:1fr 1fr;padding:0;margin-bottom:18px}.stat{padding:20px;border-bottom:1px solid var(--line)}.stat:nth-child(2){border-right:0}.stat:nth-child(3),.stat:nth-child(4){border-bottom:0}.stat-value{font-size:27px}.stat-top{margin-bottom:10px}.stat-foot{font-size:11px;gap:5px}.wide-grid{grid-template-columns:1fr;gap:18px}.two-col,.bottom-grid{gap:18px;margin-bottom:18px}.panel-head{padding:19px 18px 0}.trend-chart{height:220px;padding-left:9px;padding-right:9px}.chart-foot{padding:12px 18px 15px;font-size:11px}.chart-foot>span:last-child{display:none}.pending-panel,.insight-panel{padding:20px}.insight-panel p{font-size:14px}.queue{padding:0 12px}.queue strong{font-size:25px}.queue span{font-size:11px}.table-toolbar{padding:16px 18px;flex-wrap:wrap;gap:20px}.table-toolbar .search{max-width:none;width:100%}.tab.active:after{bottom:-7px}.table-wrap table{min-width:690px}.table-bottom{padding:12px 18px}.filter-line{padding:17px;gap:9px}.filter-line .search{flex-basis:100%}.app-footer{padding:6px 18px 22px;display:block;line-height:2}.app-footer span{display:block}.toast{left:50%;bottom:20px;min-width:240px;text-align:center}.form-panel{padding:20px}.form-grid{grid-template-columns:1fr}.field.full{grid-column:auto}.form-actions{flex-wrap:wrap}.form-actions .btn{flex:1}.knowledge-grid{grid-template-columns:1fr}.content-grid{gap:18px}.employee-welcome{padding:24px;display:block}.employee-welcome h1{font-size:22px}.employee-welcome .btn{margin-top:20px}.service-actions{grid-template-columns:1fr;gap:10px}.service-action{padding:18px}.service-action p{font-size:11px}.steps{gap:8px}.step{font-size:11px}.step:not(:last-child):after{margin:0 0 0 3px}.analysis-row{grid-template-columns:1fr}.report-summary{gap:10px;padding:20px}.report-summary strong{font-size:19px}.chat-input{padding:16px}.chat-input form{gap:7px}.chat-messages{padding:17px}.bubble{font-size:12px;padding:13px;max-width:91%}.suggestions{padding:0 17px 16px}.detail-dialog{width:100%}.detail-body{padding:20px}.detail-head{padding:20px}.legend{gap:9px;font-size:11px}.integration{gap:12px}.integration .badge{font-size:11px}.notice{font-size:11px}}
+@media(prefers-reduced-motion:reduce){*,*:before,*:after{transition:none!important;scroll-behavior:auto!important}}
+@media print{body{background:#fff}.sidebar,.topbar,.app-footer,.heading-actions,.btn,.filter-line,.table-action,.toast,.detail-dialog{display:none!important}.app-shell{margin:0}main{padding:0}.panel{break-inside:avoid}.table-wrap{overflow:visible}table{font-size:11px}.two-col,.wide-grid,.bottom-grid{display:block}.panel{margin:12px 0}.stats-row{break-inside:avoid}}
+
+/* Readability pass: operational labels and mobile filter widths. */
+.cell-title,.money,.table-action,.badge,.tab,table{font-size:12px}.cell-sub,th,.stat-foot,.field-help{font-size:11px}.workspace .square{flex-shrink:0}.workspace{padding:11px 9px;gap:7px}.workspace>div{white-space:nowrap;font-size:11px}.workspace .icon{display:none}.legend{color:#667565}.trend-chart text{fill:#667565}.nav-label{color:#68776b}
+@media(max-width:760px){.page-heading .heading-actions{display:grid;grid-template-columns:1fr 1fr;width:100%}.heading-actions>.btn{grid-column:1/-1}.heading-actions select{width:100%;padding-right:20px}.stat-foot{flex-wrap:wrap;line-height:1.5}.top-actions .btn{font-size:11px}.tabs{flex-wrap:wrap;gap:12px}.table-toolbar{row-gap:14px}.form-grid input,.form-grid select,.chat-input input{font-size:16px}}
+.knowledge-notice{display:flex;align-items:center;gap:12px;padding:17px 20px;border:1px solid #dce6d4;border-radius:10px;background:#edf4e8;margin-bottom:20px;color:#496744;font-size:12px}.knowledge-notice>svg{width:23px;height:23px}.knowledge-notice>span{flex:1}.knowledge-notice strong{display:block;color:var(--ink);font-weight:600;margin-bottom:3px}.chat-context{padding:12px 22px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:center;flex-wrap:wrap;background:#fafcf7;font-size:11px;color:var(--muted)}.chat-context select{padding:5px 22px 5px 9px;font-size:12px}.chat-context .link-button{margin-left:auto;font-size:11px}.citation-list{display:grid;gap:7px;white-space:normal}.citation{display:flex;align-items:center;gap:6px;border:0;padding:5px 0;background:transparent;text-align:left;color:var(--green);font-size:11px;line-height:1.6}.citation:hover{text-decoration:underline}.citation .icon{width:14px;height:14px}.citation .icon:last-child{margin-left:auto}.lodging-quick .table-wrap{margin-top:16px}.lodging-quick table{font-size:11px;min-width:0}.lodging-quick th,.lodging-quick td{padding:11px 8px;font-size:11px}.lodging-quick th:first-child,.lodging-quick td:first-child{padding-left:20px}.lodging-quick p{font-size:11px;line-height:1.8;padding:14px 21px 5px;color:var(--muted)}.lodging-quick>.table-action{margin:4px 21px 19px}.knowledge-search-panel{padding:16px 19px;margin-bottom:21px;display:flex;gap:15px;align-items:center}.knowledge-search-panel .search{max-width:none;flex:1}.knowledge-search-panel input{padding-top:10px;padding-bottom:10px;font-size:12px}.knowledge-result-count{font-size:12px;margin:0 0 13px;color:var(--muted)}.knowledge-result-list{display:grid;gap:14px}.knowledge-result{padding:22px;display:grid;gap:10px}.knowledge-result>.badge{justify-self:start}.knowledge-result p{font-size:12px;color:#586c5e;white-space:pre-line;line-height:1.85}.knowledge-result small{color:var(--muted);font-size:11px}.doc-meta{font-size:11px;color:var(--muted)}.clause-index{display:grid;gap:6px;padding:18px 0;margin-bottom:10px;border-bottom:1px solid var(--line)}.clause-index button{border:0;background:none;text-align:left;color:var(--green);font-size:12px;padding:4px}.clause-index button:hover{background:var(--sage)}.knowledge-clause{padding:21px 0;border-bottom:1px solid var(--line);scroll-margin-top:120px}.knowledge-clause h3{font-size:14px;margin-bottom:13px}.knowledge-clause .doc-body{font-size:13px;line-height:1.95}.knowledge-clause.highlight{background:#f0f6e9;padding:20px 14px;margin:0 -14px;border-radius:9px;border:1px solid #dbe6d0}.chat-shell .chat-messages{max-height:590px;min-height:260px}
+@media(max-width:760px){.knowledge-notice{padding:15px;flex-wrap:wrap;align-items:flex-start}.knowledge-notice>.btn{margin-left:30px}.knowledge-notice>span{min-width:200px}.chat-context{padding:12px 16px;gap:8px}.chat-context #chat-context-city{flex-basis:100%;order:3}.chat-context select{font-size:16px}.knowledge-search-panel{display:block}.knowledge-search-panel>.muted{display:block;margin-top:9px}.lodging-quick table{min-width:350px}.lodging-quick th,.lodging-quick td{font-size:11px}.knowledge-result{padding:18px}}
+</style>
+</head>
+<body>
+  <a class="skip" href="#main">跳到主要内容</a>
+  <aside id="sidebar" class="sidebar"></aside>
+  <div class="app-shell">
+    <header id="topbar" class="topbar"></header>
+    <main id="main" tabindex="-1"></main>
+    <footer class="app-footer"><span>报销有数 · 智能财务预审工作台</span><span>演示数据 · 仅保存在当前浏览器</span></footer>
+  </div>
+  <dialog id="detail" class="detail-dialog" aria-labelledby="detail-title"></dialog>
+  <div id="toast" class="toast" role="status" aria-live="polite"></div>
+<script>// 虚构企业与制度，仅用于交互体验。请勿将演示开票或联系信息用于真实业务。
+const DEMO_KNOWLEDGE = {
+  "version": "2026.10-v2",
+  "company": "星澜能源科技有限公司",
+  "disclaimer": "虚构企业与制度，仅用于交互体验",
+  "effectiveDate": "2026-10-01",
+  "defaultRole": "普通员工",
+  "roles": [
+    "普通员工",
+    "部门经理",
+    "公司高管"
+  ],
+  "lodgingTiers": [
+    {
+      "id": "A",
+      "name": "一线城市",
+      "cities": [
+        "北京",
+        "上海",
+        "广州",
+        "深圳"
+      ],
+      "rates": [
+        450,
+        600,
+        800
+      ]
+    },
+    {
+      "id": "B",
+      "name": "重点城市",
+      "cities": [
+        "杭州",
+        "南京",
+        "苏州",
+        "天津",
+        "重庆",
+        "成都",
+        "武汉",
+        "西安",
+        "厦门",
+        "青岛",
+        "宁波",
+        "大连",
+        "郑州",
+        "济南",
+        "福州",
+        "长沙",
+        "合肥",
+        "珠海",
+        "东莞",
+        "佛山",
+        "无锡",
+        "沈阳",
+        "昆明",
+        "南昌",
+        "南宁",
+        "贵阳",
+        "海口",
+        "三亚",
+        "石家庄",
+        "太原",
+        "长春",
+        "哈尔滨",
+        "兰州",
+        "乌鲁木齐",
+        "呼和浩特",
+        "银川",
+        "西宁",
+        "拉萨"
+      ],
+      "rates": [
+        380,
+        500,
+        650
+      ]
+    },
+    {
+      "id": "C",
+      "name": "其他中国大陆城市",
+      "cities": [],
+      "rates": [
+        300,
+        400,
+        500
+      ]
+    }
+  ],
+  "meals": {
+    "daily": 100,
+    "breakfast": 20,
+    "lunch": 40,
+    "dinner": 40
+  },
+  "transport": {
+    "localDaily": 80,
+    "privateKm": 1.2,
+    "rail": [
+      "二等座",
+      "二等座",
+      "一等座"
+    ],
+    "flight": [
+      "经济舱",
+      "经济舱",
+      "经济舱"
+    ]
+  },
+  "hospitality": {
+    "perPerson": 200,
+    "maxCompanionsRule": "来宾5人及以下，陪同不超过2人；超过5人，陪同不超过来宾人数的一半（向下取整）",
+    "maxCompanionsSmall": 2
+  },
+  "deadlines": {
+    "submitWorkdays": 10,
+    "reviewWorkdays": 3,
+    "payWorkdays": 5,
+    "monthCutoff": 25,
+    "advanceSettleWorkdays": 10
+  },
+  "approval": [
+    {
+      "max": 2000,
+      "chain": [
+        "直属负责人",
+        "财务复核"
+      ]
+    },
+    {
+      "max": 10000,
+      "chain": [
+        "直属负责人",
+        "部门经理",
+        "财务复核"
+      ]
+    },
+    {
+      "max": null,
+      "chain": [
+        "直属负责人",
+        "部门经理",
+        "分管副总",
+        "财务负责人"
+      ]
+    }
+  ],
+  "invoice": {
+    "company": "星澜能源科技有限公司",
+    "taxId": "DEMO-TAX-20261001",
+    "note": "演示占位税号，无效，不能用于实际开票"
+  },
+  "finance": {
+    "name": "财务共享服务台（演示）",
+    "email": "finance@example.invalid"
+  },
+  "references": {
+    "scope": "TR-08",
+    "travelApplication": "TR-01",
+    "lodging": "TR-02",
+    "lodgingException": "TR-03",
+    "railAndFlight": "TR-04",
+    "localTransport": "TR-05",
+    "privateCar": "TR-06",
+    "meals": "ME-01",
+    "mealDeduction": "ME-02",
+    "hospitality": "HO-01",
+    "companions": "HO-02",
+    "invoice": "IN-01",
+    "attachments": "IN-02",
+    "duplicates": "IN-03",
+    "approval": "AP-01",
+    "budget": "AP-02",
+    "purchase": "PU-01",
+    "training": "PU-02",
+    "submission": "PR-01",
+    "reviewAndPayment": "PR-02",
+    "advance": "PR-03",
+    "returnedClaims": "PR-04"
+  },
+  "docs": [
+    {
+      "id": "kb-travel",
+      "title": "差旅与住宿管理办法",
+      "summary": "规定出差申请、城市住宿限额、超标例外、交通舱位和市内出行；适用于中国大陆公务出差。",
+      "version": "V2.0",
+      "category": "差旅制度",
+      "clauses": [
+        {
+          "id": "TR-01",
+          "title": "出差申请",
+          "body": "公务出差应在订票、订房和发生费用前提交出差申请，填写事由、目的地、出发与返回日期、出行人、预算归属和预计费用，由直属负责人确认业务必要性。\n报销时关联已批准的申请；行程、城市、人员或预算发生实质变化，应在新增支出前补充变更批准。未经申请不得将个人旅行转为公务报销；紧急出差应先取得可留痕的直属负责人授权，并在出发后1个工作日内补录申请。",
+          "tags": [
+            "出差",
+            "申请",
+            "事前审批",
+            "行程变更"
+          ]
+        },
+        {
+          "id": "TR-02",
+          "title": "住宿标准",
+          "body": "住宿按含税房费、每间每晚计算，在实际发生金额与适用上限之间取较低值，不按定额发放。\nA类一线城市：北京、上海、广州、深圳；普通员工450元，部门经理600元，公司高管800元。\nB类重点城市：杭州、南京、苏州、天津、重庆、成都、武汉、西安、厦门、青岛、宁波、大连、郑州、济南、福州、长沙、合肥、珠海、东莞、佛山、无锡、沈阳、昆明、南昌、南宁、贵阳、海口、三亚、石家庄、太原、长春、哈尔滨、兰州、乌鲁木齐、呼和浩特、银川、西宁、拉萨；普通员工380元，部门经理500元，公司高管650元。\nC类其他中国大陆城市：普通员工300元，部门经理400元，公司高管500元。\n应逐晚比较标准，不能用低价一晚的结余抵扣另一晚的超标金额。含早餐房价仍计入住宿上限，已供早餐按ME-02扣减餐补。报销人应提供住宿发票与入住明细。",
+          "tags": [
+            "住宿",
+            "酒店",
+            "房费",
+            "城市",
+            "深圳",
+            "北京",
+            "上海",
+            "杭州",
+            "标准",
+            "限额"
+          ]
+        },
+        {
+          "id": "TR-03",
+          "title": "住宿超标例外",
+          "body": "展会、旺季或会议指定酒店导致住宿超标时，先说明原因并附同区域可选酒店的价格截图，再申请例外。超标比例＝（拟支付每晚含税房价－适用每晚上限）÷适用每晚上限。\n超标比例不超过20%（含20%），须在费用发生前取得部门经理与财务负责人批准；超过20%，须在费用发生前取得分管副总与财务负责人批准。例外批准应写明城市、日期、房晚、允许的含税单价及最高金额。\n获批后在批准范围内按实际费用报销；未取得相应事前批准的，超标部分由个人承担。住宿例外审批不能替代报销单的AP-01金额审批。",
+          "tags": [
+            "住宿超标",
+            "例外",
+            "20%",
+            "分管副总",
+            "财务负责人",
+            "个人承担"
+          ]
+        },
+        {
+          "id": "TR-04",
+          "title": "交通舱位",
+          "body": "铁路：普通员工和部门经理可报二等座，公司高管可报一等座；同等级价格中合理选择直达、少换乘的路线。\n飞机：普通员工、部门经理、公司高管均按经济舱标准，必要机场建设费及燃油附加费随票报销。自行选择更高舱位产生的差价由个人承担。\n必须乘坐超标准舱位时，应在购票前说明无合适班次或业务紧急等原因，取得分管副总与财务负责人书面批准。报销附出票信息、支付凭证及真实乘坐记录。",
+          "tags": [
+            "高铁",
+            "火车",
+            "二等座",
+            "一等座",
+            "机票",
+            "经济舱",
+            "商务舱",
+            "舱位"
+          ]
+        },
+        {
+          "id": "TR-05",
+          "title": "市内交通",
+          "body": "公务出差期间的地铁、公交、出租车和网约车按实际公务费用报销，每人每日合计上限80元，不按80元定额发放，也不跨日调剂。往返机场、火车站的市内路段计入当日80元上限。\n附有效票据；网约车附包含日期、起终点、金额的行程明细，注明公务用途。家庭与固定办公地点间的日常通勤、个人购物绕行不予报销。\n夜间安全、携带设备等必要情形预计超过80元时，应在用车前取得部门经理与财务负责人批准，并在获批金额内实报实销。",
+          "tags": [
+            "交通",
+            "市内交通",
+            "打车",
+            "出租车",
+            "网约车",
+            "地铁",
+            "80",
+            "机场"
+          ]
+        },
+        {
+          "id": "TR-06",
+          "title": "私车公用",
+          "body": "私车公用须在出行前获部门经理批准，记录公务事由、日期、起终点、核定路线与里程。按经核定的公务里程每公里1.2元补贴，里程结果保留1位小数，金额按人民币四舍五入保留2位小数。\n每公里补贴已包含油费、车辆损耗等车辆使用成本，同一行程不得再报油费或出租车费。必要的高速通行费与公务停车费凭票另报，不占用TR-05的市内交通80元限额。私人绕行里程不计入；缺少里程依据时先补充记录再报销。",
+          "tags": [
+            "私车",
+            "私车公用",
+            "公里",
+            "里程",
+            "油费",
+            "停车",
+            "高速",
+            "1.2"
+          ]
+        },
+        {
+          "id": "TR-07",
+          "title": "合住、取消与个人延住",
+          "body": "多人合住同一房间，只能就该房间实际支出报销一次，按申请中确定的订房员工职级标准核定，不得把同住人的住宿上限相加。\n因公务变化取消或改签产生的合理费用，附变更批准、原订单、退款或扣费明细；已退回金额须从报销金额中扣除。个人原因延住、陪同家属、娱乐消费及其附加费用由个人承担。",
+          "tags": [
+            "合住",
+            "取消",
+            "改签",
+            "退款",
+            "个人延住",
+            "家属"
+          ]
+        },
+        {
+          "id": "TR-08",
+          "title": "适用范围与职级",
+          "body": "本办法仅适用于星澜能源科技有限公司的中国大陆公务差旅，职级分为普通员工、部门经理、公司高管，以出差申请中的人事职级为准。未提供职级时，演示问答按普通员工测算，并明确该假设。\n港澳台地区和境外出差不属于本办法城市住宿标准的适用范围，不得套用C类标准；需联系财务另行确认并取得专项预算批准。本知识库未提供外币汇率、境外补贴或海外税务规则。\n本企业、制度、人员角色和联系信息均为虚构，仅用于交互体验，不构成任何真实公司的报销依据。",
+          "tags": [
+            "适用范围",
+            "职级",
+            "普通员工",
+            "部门经理",
+            "公司高管",
+            "境外",
+            "香港",
+            "澳门",
+            "台湾",
+            "虚构"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kb-meals",
+      "title": "出差餐补与补贴指引",
+      "summary": "餐补每日100元，按早餐20元、午餐40元、晚餐40元拆分；已供餐和已报销餐费应扣减。",
+      "version": "V2.0",
+      "category": "费用标准",
+      "clauses": [
+        {
+          "id": "ME-01",
+          "title": "餐补标准",
+          "body": "按已批准并实际完成的公务出差日期，每人每日餐补100元，其中早餐20元、午餐40元、晚餐40元。餐补属于制度补贴，无需为该补贴另取餐饮发票；应提供出差申请及实际行程日期。\n按日先算100元，再逐餐扣除ME-02规定的已供餐部分，最低为0元。无公务出差的普通办公日、个人延住日期不计餐补；实际出差天数由行程与业务记录共同确认。",
+          "tags": [
+            "餐补",
+            "伙食补助",
+            "每天",
+            "100",
+            "早餐",
+            "午餐",
+            "晚餐"
+          ]
+        },
+        {
+          "id": "ME-02",
+          "title": "已供餐扣减",
+          "body": "酒店房费含早餐、会议或培训免费供餐、客户提供工作餐，或同一餐已由公司承担、按招待费报销时，应扣减相应餐补：早餐20元，午餐40元，晚餐40元。\n同一餐仅扣减一次，不因多个来源重复扣减；已提供餐食但个人主动放弃用餐，也视为已供餐。公司实际支付的餐费不得再次以个人餐饮发票报销。\n例如酒店含早餐且客户提供午餐，当日餐补为100－20－40＝40元；三餐均已供餐时为0元。",
+          "tags": [
+            "餐补扣减",
+            "含早",
+            "含早餐",
+            "酒店早餐",
+            "客户请客",
+            "免费供餐",
+            "重复报销"
+          ]
+        },
+        {
+          "id": "ME-03",
+          "title": "餐补申报记录",
+          "body": "在报销明细中逐日填写出差地点、早餐是否已供、午餐是否已供、晚餐是否已供及供餐来源。连续多日行程可汇总填报，但必须保留逐日计算明细。\n跨城市出差按实际公务日期计天，出发地与到达地不能在同一天各计一次餐补。住宿房晚数与餐补天数分别按证据确定，不能仅用住宿晚数直接推定出差天数。",
+          "tags": [
+            "餐补明细",
+            "跨城",
+            "出差天数",
+            "房晚",
+            "计算"
+          ]
+        },
+        {
+          "id": "ME-04",
+          "title": "餐费与招待费区分",
+          "body": "员工个人公务出差用餐原则上通过餐补覆盖，不再单独报销餐饮发票。与外部客户进行业务招待的餐费，按HO-01、HO-02办理，写明来宾、陪同、目的与审批信息。\n参与公司已承担的招待餐的出差员工，应按ME-02扣减对应一餐的餐补；内部团队聚餐不应改填客户招待，需按活动预算单独申请。",
+          "tags": [
+            "餐费",
+            "招待费",
+            "团建",
+            "内部聚餐",
+            "客户用餐"
+          ]
+        },
+        {
+          "id": "ME-05",
+          "title": "其他补贴边界",
+          "body": "本版制度只规定公务差旅餐补和TR-06私车公用补贴，未设定加班餐补、通讯补贴、驻外津贴或夜班补贴金额。涉及这些费用，应向财务共享服务台核实适用制度后再提交，不应套用每日100元餐补。\n餐补按批准行程与供餐情况核定，不因员工未索要餐饮发票而额外增加。",
+          "tags": [
+            "其他补贴",
+            "加班",
+            "通讯",
+            "夜班",
+            "驻外",
+            "未覆盖"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kb-hospitality",
+      "title": "业务招待费管理规范",
+      "summary": "招待餐饮按实际参与人数每人每次200元封顶，同时核验陪同人数与事前申请。",
+      "version": "V2.0",
+      "category": "业务招待",
+      "clauses": [
+        {
+          "id": "HO-01",
+          "title": "招待标准",
+          "body": "确因业务需要的外部客户招待餐饮，每人每次含税费用上限200元，按实际参加的来宾和符合HO-02陪同人数要求的员工合计计算人数，在合规实际费用与人数上限金额之间取较低值。餐费及餐厅服务费一并计入。\n招待前提交事由、客户单位、预计来宾与陪同人数、时间地点、预算，并取得部门经理批准；报销仍执行AP-01的金额审批。超过每人200元的必要招待，应在发生前取得分管副总与财务负责人明确金额的书面批准。没有相应批准的超标费用由个人承担。",
+          "tags": [
+            "业务招待",
+            "客户招待",
+            "餐饮",
+            "人均",
+            "200",
+            "招待标准"
+          ]
+        },
+        {
+          "id": "HO-02",
+          "title": "陪同人数与报销附件",
+          "body": "来宾5人及以下，陪同不超过2人；超过5人，陪同不超过来宾人数的一半（向下取整）。例如来宾6人最多陪同3人，来宾7人也最多陪同3人。\n报销附事前招待申请、实际来宾单位与姓名、实际陪同名单、业务目的、用餐日期地点、餐饮发票、消费明细和支付凭证。人数以实际参加为准，不得用预计人数增加报销额度。\n超出陪同人数限制时，应先说明原因交财务核定，不能把超额陪同计入200元乘数来自动提高限额。",
+          "tags": [
+            "陪同",
+            "来宾",
+            "人数",
+            "5人",
+            "一半",
+            "招待附件",
+            "客户名单"
+          ]
+        },
+        {
+          "id": "HO-03",
+          "title": "招待合并与拆单",
+          "body": "同一业务活动、同一场次的招待按完整活动核算，不得将餐费、服务费拆为多张报销单以规避每人标准或审批权限。多张发票应关联同一招待申请，并汇总实际支出。\n员工AA支付时指定一名经办人汇总真实支付记录；公司承担的同一笔餐费只能报销一次。",
+          "tags": [
+            "招待拆单",
+            "同一活动",
+            "服务费",
+            "AA",
+            "重复"
+          ]
+        },
+        {
+          "id": "HO-04",
+          "title": "禁止列支的招待内容",
+          "body": "个人宴请、亲友聚会、私人庆典、与业务无关的娱乐消费不得列为业务招待费。礼品、购物卡或其他赠送支出不属于本章餐饮标准，不能凭每人200元标准报销。\n无法说明客户身份、业务目的或实际参与人数的，先补充材料；不得虚构来宾、变更发票项目或使用无关票据冲抵。",
+          "tags": [
+            "个人宴请",
+            "礼品",
+            "购物卡",
+            "娱乐",
+            "禁止报销"
+          ]
+        },
+        {
+          "id": "HO-05",
+          "title": "招待与差旅餐补衔接",
+          "body": "出差期间的合规客户招待可单独按业务招待申报，但参加该餐的出差员工应扣减相应餐补：早餐20元、午餐40元、晚餐40元。\n例如出差员工当天酒店含早餐，晚餐参加公司支付的客户招待，则当日餐补为100－20－40＝40元。客户提供的免费餐不形成公司招待费，但仍应扣减相应餐补。",
+          "tags": [
+            "招待餐补",
+            "扣减",
+            "早餐",
+            "晚餐",
+            "客户提供"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kb-invoice",
+      "title": "发票与报销附件指南",
+      "summary": "说明演示开票抬头、各费用的证明材料、重复票据、退款与信息保护要求。",
+      "version": "V2.0",
+      "category": "票据附件",
+      "clauses": [
+        {
+          "id": "IN-01",
+          "title": "演示开票信息",
+          "body": "演示公司抬头：星澜能源科技有限公司。演示税号：DEMO-TAX-20261001。该税号为故意无效的占位内容，不能用于实际开票；本知识库未提供任何真实银行账户、电话或注册地址。\n真实业务应使用所在公司正式提供的开票资料。演示票据核验只用于呈现流程，不代表税务发票查验结果。",
+          "tags": [
+            "开票",
+            "抬头",
+            "税号",
+            "纳税人",
+            "公司信息",
+            "演示"
+          ]
+        },
+        {
+          "id": "IN-02",
+          "title": "通用与分类附件",
+          "body": "通用附件：业务申请或审批记录、有效费用凭证、支付凭证、费用明细；每项记录应能对应真实的日期、业务、金额与受益部门。\n住宿：住宿发票、包含酒店名称与入住退房日期、房晚、单价的入住明细；交通：票据及行程记录，网约车另附起终点与金额明细；招待：餐饮发票、消费清单、来宾与陪同名单、事前招待申请；采购：申请、订单或合同、验收记录、发票和支付凭证；培训：课程信息、批准记录、参加或结业证明、发票。\n只上传付款截图而没有对应费用凭证，不视为附件齐全。",
+          "tags": [
+            "附件",
+            "发票",
+            "支付凭证",
+            "水单",
+            "住宿明细",
+            "清单",
+            "培训证明"
+          ]
+        },
+        {
+          "id": "IN-03",
+          "title": "重复、错误与作废票据",
+          "body": "同一发票或同一实际支出只能报销一次。发票号码、开票日期、销售方、含税金额以及业务关联记录用于辅助识别重复；更换图片文件名或拆分到其他报销单不能消除重复。\n抬头、项目或金额错误时，应联系开票方更正后提交；红冲、作废或已退款的票据不得按原金额再次报销。疑似重复不等于已认定违规，应先核对原报销单、退款和实际付款记录。",
+          "tags": [
+            "重复发票",
+            "重复报销",
+            "错票",
+            "作废",
+            "红冲",
+            "退款",
+            "抬头错误"
+          ]
+        },
+        {
+          "id": "IN-04",
+          "title": "电子票据与材料遗失",
+          "body": "电子发票优先上传原始PDF、OFD或可验证的原始文件，确保关键字段清晰可读；多页文件应完整上传。票据照片不得裁掉金额、日期、发票号码等必要信息。\n材料遗失时先向供应商补取。确实无法补取的，提交遗失说明、付款及业务证据，由部门经理确认后交财务负责人判断可接受性；遗失说明本身不自动替代有效费用凭证。",
+          "tags": [
+            "电子发票",
+            "PDF",
+            "OFD",
+            "照片",
+            "遗失",
+            "补票"
+          ]
+        },
+        {
+          "id": "IN-05",
+          "title": "退款、折扣与个人垫付",
+          "body": "报销金额以公司实际承担的净额为基础，扣除退款、商家折扣和已由公司直接支付的部分。个人垫付须证明实际支付人、收款方、日期与金额；他人代付时补充代付关系说明。\n报销付款后发生退款，应主动通知财务，并按原报销单办理冲回或归还款项，不得保留退款与报销款双重收益。",
+          "tags": [
+            "退款",
+            "折扣",
+            "净额",
+            "个人垫付",
+            "代付",
+            "冲回"
+          ]
+        },
+        {
+          "id": "IN-06",
+          "title": "附件隐私与演示边界",
+          "body": "提交材料遵循业务所需的最小范围：保留核验日期、商户、业务与金额所需信息，遮盖无关订单、私人聊天及不必要的个人敏感信息。\n本交互体验应使用模拟票据与虚构客户信息；不要将DEMO-TAX-20261001或finance@example.invalid当作真实开票或联系资料。演示系统的提示不替代人工审核或真实发票查验。",
+          "tags": [
+            "隐私",
+            "脱敏",
+            "模拟票据",
+            "演示边界",
+            "敏感信息"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kb-approval",
+      "title": "报销审批与预算权限",
+      "summary": "按单据合计金额匹配审批链；例外批准、预算确认和财务最终审核相互衔接。",
+      "version": "V2.0",
+      "category": "审批权限",
+      "clauses": [
+        {
+          "id": "AP-01",
+          "title": "金额审批路径",
+          "body": "单张报销单的本次申请报销合计金额不超过2,000元（含2,000元）：直属负责人→财务复核。\n超过2,000元且不超过10,000元（含10,000元）：直属负责人→部门经理→财务复核。\n超过10,000元：直属负责人→部门经理→分管副总→财务负责人。\n所有路径均由财务最终审核：前两档为财务复核，最高档由财务负责人完成最终复核及批准。金额审批通过不代表费用自动符合标准，仍需核验业务、预算、票据和适用例外批准。",
+          "tags": [
+            "审批",
+            "金额",
+            "2000",
+            "10000",
+            "直属负责人",
+            "部门经理",
+            "分管副总",
+            "财务复核"
+          ]
+        },
+        {
+          "id": "AP-02",
+          "title": "预算归属与余额",
+          "body": "提交前选择实际受益的部门、项目和费用类别，确认该预算有足够可用余额。跨部门支出注明分摊依据，由相关预算负责人确认；不能为通过额度检查而填入无关部门。\n超预算或无预算的费用，应先获得预算调整或专项预算批准，再进入报销流程。预算批准不自动豁免住宿、人均招待等费用标准。",
+          "tags": [
+            "预算",
+            "余额",
+            "项目",
+            "部门",
+            "分摊",
+            "超预算"
+          ]
+        },
+        {
+          "id": "AP-03",
+          "title": "禁止拆单与金额边界",
+          "body": "同一笔完整业务不得为降低审批级别而拆成多张报销单。需分次报销的长期合同，应关联原合同和总预算，明确本次已付款项及历史报销金额。\n2,000元整进入第一档，2,000.01元进入第二档；10,000元整进入第二档，10,000.01元进入第三档。人民币金额计算保留2位小数。",
+          "tags": [
+            "拆单",
+            "审批边界",
+            "2000.01",
+            "10000.01",
+            "分次报销"
+          ]
+        },
+        {
+          "id": "AP-04",
+          "title": "标准例外与金额审批",
+          "body": "住宿超标按TR-03先完成专项事前批准；超标准交通舱位按TR-04办理；超标准招待按HO-01办理。例外记录应与报销单关联，注明批准人、批准日期及允许的金额范围。\n例外批准解决费用标准适用问题，AP-01解决报销单金额权限问题，两者均应满足。报销金额低于2,000元也不能省略本应取得的超标例外批准。",
+          "tags": [
+            "例外审批",
+            "专项批准",
+            "超标",
+            "事前",
+            "金额权限"
+          ]
+        },
+        {
+          "id": "AP-05",
+          "title": "代理审批与利益冲突",
+          "body": "审批人缺席时使用正式设置的授权代理，不应由报销人自行代签。审批人与报销人为同一人或对该笔支出存在直接利益冲突时，提交上一级适当负责人审批。\n流程中的业务确认与财务审核分别保留可追溯记录，不得用聊天中的模糊表态替代对具体事由、金额和日期的批准。",
+          "tags": [
+            "代理审批",
+            "自批",
+            "授权",
+            "利益冲突",
+            "审批记录"
+          ]
+        },
+        {
+          "id": "AP-06",
+          "title": "提交后的修改与撤回",
+          "body": "审批未结束且尚未支付时，如发现金额、附件或业务信息错误，可申请撤回并更正；修改影响金额权限、预算或例外范围的，重新匹配审批路径。\n已支付单据不直接覆盖原记录，应联系财务通过冲回、补报或差额调整处理，保留原单与更正记录的关联。",
+          "tags": [
+            "撤回",
+            "修改",
+            "已支付",
+            "补报",
+            "更正",
+            "差额"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kb-purchase",
+      "title": "办公采购、软件与培训费用",
+      "summary": "明确办公采购和培训的事前申请、比价、验收、订阅管理及不可个人报销事项。",
+      "version": "V2.0",
+      "category": "采购培训",
+      "clauses": [
+        {
+          "id": "PU-01",
+          "title": "办公采购",
+          "body": "办公用品和设备应先提交采购申请，写明用途、规格、数量、预计含税金额和预算归属，获部门经理批准后采购。优先使用公司指定采购渠道。\n单笔采购预计金额达到5,000元（含）时，应提供至少3家可比报价；确属唯一供应商的，先提交单一来源理由并获部门经理与财务负责人批准。报销附申请、订单或合同、验收记录、发票、支付凭证，金额审批仍按AP-01执行。",
+          "tags": [
+            "办公采购",
+            "办公用品",
+            "设备",
+            "比价",
+            "5000",
+            "三家报价",
+            "验收"
+          ]
+        },
+        {
+          "id": "PU-02",
+          "title": "培训与考试",
+          "body": "工作相关的课程、会议培训和职业考试，须事前提交学习目标、课程或考试安排、费用、预算归属，取得部门经理及人力资源负责人批准。培训费单人单次超过3,000元时，另需财务负责人事前批准；3,000元整无需该额外批准。\n报销附批准记录、课程或考试通知、参加或结业证明、发票和支付凭证；培训中由主办方提供的餐食，按ME-02扣减相关出差餐补。个人兴趣课程、无业务关联考试不予报销。",
+          "tags": [
+            "培训",
+            "课程",
+            "考试",
+            "3000",
+            "人力资源",
+            "结业证明"
+          ]
+        },
+        {
+          "id": "PU-03",
+          "title": "软件与订阅服务",
+          "body": "软件许可证、云服务和线上订阅由需求部门提交用途、使用人数、期限、费用和数据处理范围，取得部门经理、信息技术负责人及预算确认后，通过公司采购渠道开通。\n不得把个人长期订阅自动转为公司费用。续费前确认仍有业务需要；报销或付款附订单、服务期限、许可或开通证明及有效凭证，避免重复订阅和离职账号继续付费。",
+          "tags": [
+            "软件",
+            "订阅",
+            "SaaS",
+            "云服务",
+            "许可证",
+            "续费"
+          ]
+        },
+        {
+          "id": "PU-04",
+          "title": "验收与资产登记",
+          "body": "实物采购应由实际使用人或指定验收人记录到货日期、品名、数量、规格及验收结果。需纳入公司资产管理的设备，应完成资产登记并填写资产编号，再申请报销。\n部分退货、未交付或规格不符的，按真实验收和付款结果核算；不得以完整订单金额替代已完成验收的实际支出。",
+          "tags": [
+            "验收",
+            "资产",
+            "登记",
+            "设备编号",
+            "退货",
+            "部分交付"
+          ]
+        },
+        {
+          "id": "PU-05",
+          "title": "预付款与合同付款",
+          "body": "供应商要求预付款时，应提供已批准的采购申请、合同或订单、预付比例与交付安排，由部门经理与财务负责人确认后走对公付款流程。预付款不应虚构成已验收采购报销。\n交付后及时补充验收及发票，核销原预付款；尾款申请关联同一合同和已付记录，防止重复支付。个人不应在未获批准时自行垫付大额预付款。",
+          "tags": [
+            "预付款",
+            "供应商",
+            "合同",
+            "对公付款",
+            "尾款",
+            "核销"
+          ]
+        },
+        {
+          "id": "PU-06",
+          "title": "不可直接报销与未覆盖费用",
+          "body": "私人消费、个人罚款、与工作无关的会员、缺乏业务证明的购物卡等，不得列为办公采购或培训。采购类别不能用来规避招待费、人均限额或差旅审批。\n本版未规定员工福利、礼品、广告投放、税务申报、工资薪酬或法定税费处理细则；涉及这些事项应向财务共享服务台确认专项制度，不能根据相近类别自行推定标准。",
+          "tags": [
+            "不可报销",
+            "私人消费",
+            "罚款",
+            "会员",
+            "福利",
+            "工资",
+            "税务",
+            "未覆盖"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kb-process",
+      "title": "报销提交、审核与付款流程",
+      "summary": "规定10个工作日提交、材料齐全后3个工作日财务复核、最终批准后5个工作日付款及借款核销。",
+      "version": "V2.0",
+      "category": "办理流程",
+      "clauses": [
+        {
+          "id": "PR-01",
+          "title": "提交时限与月度截止",
+          "body": "差旅结束或事项完成后的次一工作日起计算，应在10个工作日内提交完整报销单。工作日按公司工作日历计算；自然日、周末和法定节假日不得直接等同于工作日。\n每月25日17:00为当月集中入账材料收集截止；之后提交的单据通常列入下一月批次。月度截止不替代10个工作日提交要求，也不延长员工应提交的期限。逾期应填写原因并由部门经理确认后交财务判断处理。",
+          "tags": [
+            "提交时限",
+            "10个工作日",
+            "25日",
+            "截止",
+            "月结",
+            "逾期"
+          ]
+        },
+        {
+          "id": "PR-02",
+          "title": "财务审核与付款时间",
+          "body": "业务审批完成、材料齐全且单据进入财务节点后，财务自次一工作日起3个工作日内完成复核或反馈补正要求。该时限不包含业务审批人处理时间。\n最终财务审核批准后的次一工作日起，5个工作日内安排付款；收款信息异常、银行退回或经批准的专项付款约定另行处理并通知经办人。\n每月25日收集截止用于集中入账安排，不等于所有单据当天付款，也不取消已获最终批准单据的5个工作日付款安排。未完成审批时不能给出确定到账日期。",
+          "tags": [
+            "审核",
+            "财务复核",
+            "3个工作日",
+            "付款",
+            "5个工作日",
+            "到账"
+          ]
+        },
+        {
+          "id": "PR-03",
+          "title": "差旅借款与核销",
+          "body": "确需差旅借款时，出发前提交已批准的出差申请、预算和借款金额，由直属负责人、部门经理及财务负责人批准后办理。借款只用于已批准的公务支出。\n差旅结束后的次一工作日起10个工作日内完成报销及借款核销；可报销费用大于借款时补付差额，小于借款时归还余款。未结清的逾期借款需先说明并处理，原则上不再新增同类借款。\n借款核销单列明原借款单号、可报销金额、已归还金额和待补或待还差额，避免把已借款部分重复支付给员工。",
+          "tags": [
+            "借款",
+            "预支",
+            "备用金",
+            "核销",
+            "余款",
+            "10个工作日"
+          ]
+        },
+        {
+          "id": "PR-04",
+          "title": "退回补正",
+          "body": "报销被退回时，先阅读具体退回原因，补齐缺少的发票、行程、业务说明或批准记录；根据意见更正金额，并在原单中重新提交，避免新建无关联重复单。\n财务3个工作日复核时限从材料补齐并再次进入财务节点后的次一工作日起重新计算。补正不能倒签事前批准；确无相应例外批准的超标费用按相关标准由个人承担。",
+          "tags": [
+            "退回",
+            "驳回",
+            "补正",
+            "重新提交",
+            "材料不全",
+            "审核时限"
+          ]
+        },
+        {
+          "id": "PR-05",
+          "title": "状态查询与处理分工",
+          "body": "草稿表示尚未提交；待业务审批表示等待业务负责人确认；财务复核中表示正在核验费用与票据；待付款表示最终批准后待安排支付；已支付表示付款已登记；已退回表示需补正后重新提交。\n状态名称是本演示流程的解释，不代表已查询任何真实报销系统。实际单据进度需提供单号并联系负责审批人或财务服务台；仅凭制度文本无法查询个人实时到账情况。",
+          "tags": [
+            "状态",
+            "进度",
+            "草稿",
+            "待审批",
+            "待付款",
+            "已支付",
+            "查询"
+          ]
+        },
+        {
+          "id": "PR-06",
+          "title": "咨询方式与制度版本",
+          "body": "本版制度编号：2026.10-v2；文件版本：V2.0；生效日期：2026年10月1日。本企业与制度为虚构，仅用于交互体验。\n演示咨询窗口：财务共享服务台（演示）；演示邮箱：finance@example.invalid。该邮箱使用无效示例域名，不可用于真实联系；本知识库不提供真实电话号码或银行账户。\n问答应附具体文档与条款编号。未明确规定、输入信息不足或存在证据冲突时，应指出缺失信息或转财务确认，不凭空生成公司规则。",
+          "tags": [
+            "联系财务",
+            "财务邮箱",
+            "服务台",
+            "制度版本",
+            "生效日期",
+            "知识库",
+            "咨询"
+          ]
+        }
+      ]
+    },
+    {
+      "id": "kb-cases",
+      "title": "费用报销计算与判断案例",
+      "summary": "10个完整示例展示住宿、超标、餐补、招待、交通、审批和借款计算；示例不替代实际证据。",
+      "version": "V2.0",
+      "category": "案例解析",
+      "clauses": [
+        {
+          "id": "CA-01",
+          "title": "深圳普通员工住2晚，每晚420元",
+          "body": "条件：普通员工，深圳公务出差，2晚每晚含税房费420元，住宿附件齐全，无其他超标。\n依据：TR-02，深圳属A类，普通员工上限450元/间/晚。\n计算：每晚可报min(420,450)＝420元；2晚可报420×2＝840元；标准总额450×2＝900元，剩余60元不另行发放。\n结论：住宿费用可按实际840元申报；餐补依据真实出差日期和ME-02供餐情况另算。",
+          "tags": [
+            "案例",
+            "深圳",
+            "420",
+            "2晚",
+            "840",
+            "普通员工",
+            "住宿"
+          ]
+        },
+        {
+          "id": "CA-02",
+          "title": "深圳普通员工每晚600元的超标审批",
+          "body": "条件：普通员工，深圳，拟订每晚含税600元的酒店。\n依据：TR-02、TR-03、AP-04。\n计算：适用标准450元；每晚超标600－450＝150元；超标比例150÷450×100%≈33.3%，超过20%。\n结论：应在费用发生前取得分管副总与财务负责人批准。获批则在明确批准的单价与房晚内按实报销；未获相应事前批准则每晚最多按450元核定，150元由个人承担。即使整张报销单不足2,000元，也不能省略该例外审批。",
+          "tags": [
+            "案例",
+            "深圳",
+            "600",
+            "150",
+            "33.3%",
+            "住宿超标",
+            "分管副总"
+          ]
+        },
+        {
+          "id": "CA-03",
+          "title": "杭州普通员工与部门经理的不同标准",
+          "body": "条件：杭州公务出差，酒店每晚含税480元，住1晚，无住宿例外批准。\n依据：TR-02，杭州属B类重点城市。\n普通员工：每晚标准380元，可报min(480,380)＝380元，个人承担100元。\n部门经理：每晚标准500元，可按实际480元申报。\n结论：同一城市与酒店，需按出差人的人事职级核定，不能用部门经理标准替普通员工计算。",
+          "tags": [
+            "案例",
+            "杭州",
+            "380",
+            "480",
+            "500",
+            "职级",
+            "部门经理"
+          ]
+        },
+        {
+          "id": "CA-04",
+          "title": "住宿超标比例恰好20%的边界",
+          "body": "条件：普通员工在北京，拟订每晚含税540元酒店。\n依据：TR-02、TR-03。\n计算：北京上限450元；超出90元；90÷450＝20%。\n结论：20%包含在“不超过20%”一档，须事前取得部门经理与财务负责人批准；若房价为541元，超标比例91÷450≈20.2%，则改为分管副总与财务负责人事前批准。以上均须保留明确批准金额的记录。",
+          "tags": [
+            "案例",
+            "北京",
+            "540",
+            "20%",
+            "边界",
+            "住宿例外"
+          ]
+        },
+        {
+          "id": "CA-05",
+          "title": "3天出差含早餐且其中1天客户提供午餐",
+          "body": "条件：已批准并完成3个公务出差日期，3天早餐均已由酒店提供，其中1天午餐由客户提供，其他午晚餐自理。\n依据：ME-01、ME-02、ME-03。\n计算：基础餐补100×3＝300元；早餐扣减20×3＝60元；午餐扣减40×1＝40元；合计300－60－40＝200元。\n结论：餐补申报200元，并记录逐日供餐情况；不能从“住2晚”直接推断3天都含早餐，本例3天早餐均已提供是明确条件。",
+          "tags": [
+            "案例",
+            "餐补",
+            "3天",
+            "含早餐",
+            "客户午餐",
+            "200"
+          ]
+        },
+        {
+          "id": "CA-06",
+          "title": "7位来宾、3位陪同的招待上限",
+          "body": "条件：实际来宾7人、陪同员工3人，拟开展1次客户招待餐饮，已经取得事前业务批准。\n依据：HO-01、HO-02。\n计算：来宾超过5人，陪同上限floor(7÷2)＝3人，实际3人符合；合规人数7＋3＝10人；人均上限200元，标准总额2,000元。\n结论：实际费用1,860元可按1,860元申报；实际费用2,200元且无超标事前批准时，超出200元由个人承担。出差员工参加该餐，仍须扣减对应餐补。",
+          "tags": [
+            "案例",
+            "招待",
+            "7人",
+            "3人",
+            "2000",
+            "陪同",
+            "人均"
+          ]
+        },
+        {
+          "id": "CA-07",
+          "title": "一天打车96元的实际报销",
+          "body": "条件：某公务出差日两次合规网约车费用分别为58元和38元，票据与行程完整，无超限例外批准。\n依据：TR-05。\n计算：当日公务市内交通合计58＋38＝96元；每日上限80元；可报80元，超出16元由个人承担。\n结论：不能拆成两张单分别套用80元限额，也不能挪用其他日期未使用的限额；如事前获批更高金额，按明确批准范围核定。",
+          "tags": [
+            "案例",
+            "打车",
+            "96",
+            "80",
+            "16",
+            "每日限额"
+          ]
+        },
+        {
+          "id": "CA-08",
+          "title": "私车公用120公里加通行停车费",
+          "body": "条件：私车公用已获部门经理事前批准，经核定公务里程120公里，高速通行费36元、公务停车费20元，均有凭证。\n依据：TR-06。\n计算：里程补贴120×1.2＝144元；另报通行及停车36＋20＝56元；合计144＋56＝200元。\n结论：可按200元申报，不再报同一行程油费；这56元凭票费用不占市内交通每日80元限额，私人绕行不得计入公务里程。",
+          "tags": [
+            "案例",
+            "私车公用",
+            "120公里",
+            "1.2",
+            "200",
+            "油费",
+            "停车"
+          ]
+        },
+        {
+          "id": "CA-09",
+          "title": "2,000元与10,000元审批边界",
+          "body": "条件：四张互不相关的完整业务报销单，合计金额分别为2,000元、2,000.01元、10,000元、10,000.01元。\n依据：AP-01、AP-03。\n2,000元：直属负责人→财务复核。\n2,000.01元和10,000元：直属负责人→部门经理→财务复核。\n10,000.01元：直属负责人→部门经理→分管副总→财务负责人，由财务负责人完成最终复核。\n结论：边界按“含上限”匹配，不得把同一业务拆成多单降低权限；专项例外批准仍须另行满足。",
+          "tags": [
+            "案例",
+            "审批",
+            "2000",
+            "2000.01",
+            "10000",
+            "10000.01",
+            "边界"
+          ]
+        },
+        {
+          "id": "CA-10",
+          "title": "预借3,000元、核定费用2,680元",
+          "body": "条件：已批准差旅借款3,000元，出差结束后核定合规报销费用2,680元，尚无归还或冲销记录。\n依据：PR-01、PR-03。\n计算：应归还余款3,000－2,680＝320元，公司无需再向员工支付2,680元。\n结论：在差旅结束后的次一工作日起10个工作日内提交完整报销并完成借款核销，关联原借款单并归还320元；如已归还，应附凭证后据实扣减待还金额。",
+          "tags": [
+            "案例",
+            "借款",
+            "3000",
+            "2680",
+            "320",
+            "核销",
+            "余款"
+          ]
+        }
+      ]
+    }
+  ]
+};
+
+/* Local, source-backed rules for the fictional demo company. No network or model calls. */
+const ExpenseKnowledgeEngine = (() => {
+  'use strict';
+  const cnDigits = { 零: 0, 〇: 0, 一: 1, 二: 2, 两: 2, 三: 3, 四: 4, 五: 5, 六: 6, 七: 7, 八: 8, 九: 9 };
+  const numberPattern = '[0-9]+(?:\\.[0-9]+)?|[零〇一二两三四五六七八九十百千]+';
+  const mainlandOthers = '洛阳 焦作 桂林 惠州 中山 江门 汕头 湛江 茂名 肇庆 清远 韶关 梅州 汕尾 河源 阳江 潮州 揭阳 云浮 保定 唐山 廊坊 沧州 邯郸 邢台 秦皇岛 承德 张家口 衡水 雄安 大同 晋中 长治 运城 临汾 晋城 阳泉 吕梁 忻州 朔州 包头 鄂尔多斯 呼伦贝尔 赤峰 通辽 鞍山 抚顺 本溪 丹东 锦州 营口 阜新 辽阳 盘锦 铁岭 朝阳 葫芦岛 吉林 四平 辽源 通化 白山 松原 白城 延吉 齐齐哈尔 牡丹江 大庆 佳木斯 黑河 绥化 伊春 鹤岗 鸡西 双鸭山 七台河 徐州 常州 南通 连云港 淮安 盐城 扬州 镇江 泰州 宿迁 嘉兴 湖州 绍兴 金华 衢州 舟山 台州 丽水 温州 芜湖 蚌埠 淮南 马鞍山 淮北 铜陵 安庆 黄山 滁州 阜阳 宿州 六安 亳州 池州 宣城 莆田 三明 泉州 漳州 南平 龙岩 宁德 景德镇 萍乡 九江 新余 鹰潭 赣州 吉安 宜春 抚州 上饶 淄博 枣庄 东营 烟台 潍坊 济宁 泰安 威海 日照 临沂 德州 聊城 滨州 菏泽 开封 平顶山 安阳 鹤壁 新乡 濮阳 许昌 漯河 三门峡 南阳 商丘 信阳 周口 驻马店 济源 黄石 十堰 宜昌 襄阳 鄂州 荆门 孝感 荆州 黄冈 咸宁 随州 恩施 仙桃 潜江 天门 株洲 湘潭 衡阳 邵阳 岳阳 常德 张家界 益阳 郴州 永州 怀化 娄底 湘西 柳州 梧州 北海 防城港 钦州 贵港 玉林 百色 贺州 河池 来宾 崇左 儋州 琼海 文昌 万宁 五指山 东方 乐东 陵水 自贡 攀枝花 泸州 德阳 绵阳 广元 遂宁 内江 乐山 南充 眉山 宜宾 广安 达州 雅安 巴中 资阳 阿坝 甘孜 凉山 六盘水 遵义 安顺 毕节 铜仁 黔西南 黔东南 黔南 曲靖 玉溪 保山 昭通 丽江 普洱 临沧 楚雄 红河 文山 西双版纳 大理 德宏 怒江 迪庆 日喀则 昌都 林芝 山南 那曲 阿里 铜川 宝鸡 咸阳 渭南 延安 汉中 榆林 安康 商洛 嘉峪关 金昌 白银 天水 武威 张掖 平凉 酒泉 庆阳 定西 陇南 临夏 甘南 海东 海北 黄南 海南州 果洛 玉树 海西 石嘴山 吴忠 固原 中卫 克拉玛依 吐鲁番 哈密 昌吉 博尔塔拉 巴音郭楞 阿克苏 克孜勒苏 喀什 和田 伊犁 塔城 阿勒泰 石河子'.split(' ');
+  const overseasPattern = /香港|澳门|台湾|台北|高雄|境外|国外|海外|新加坡|东京|大阪|京都|首尔|釜山|纽约|洛杉矶|旧金山|伦敦|巴黎|柏林|悉尼|墨尔本|曼谷|吉隆坡|迪拜|美国|日本|韩国|英国|法国|德国|澳大利亚|加拿大|泰国|马来西亚|越南|欧洲|非洲/;
+  const topicLabels = { lodging: '差旅住宿标准', meals: '差旅餐补', hospitality: '业务招待', transport: '交通报销', invoice: '发票规范', approval: '审批权限', process: '报销时限', purchase: '采购与培训', travel: '出差申请' };
+  function corpus() { return typeof DEMO_KNOWLEDGE === 'undefined' ? { docs: [], roles: ['普通员工', '部门经理', '公司高管'], lodgingTiers: [] } : DEMO_KNOWLEDGE; }
+  function list() { return (corpus().docs || []).flatMap(doc => (doc.clauses || []).map(clause => ({ docId: doc.id, clauseId: clause.id, title: clause.title, body: clause.body, tags: clause.tags || [], docTitle: doc.title, category: doc.category }))); }
+  function byId(id) { return list().find(clause => clause.clauseId === id); }
+  function textOf(ids) { return ids.map(id => byId(id)?.body).filter(Boolean).join('\n\n'); }
+  function asNumber(value) {
+    if (!value) return null;
+    if (/^\d+(?:\.\d+)?$/.test(value)) return Number(value);
+    let total = 0, current = 0;
+    for (const character of value) {
+      if (Object.hasOwn(cnDigits, character)) current = cnDigits[character];
+      else { const unit = { 十: 10, 百: 100, 千: 1000 }[character]; if (!unit) return null; total += (current || 1) * unit; current = 0; }
+    }
+    return total + current;
+  }
+  function numberMatch(query, expression) { const match = query.match(expression); return match ? asNumber(match[1]) : null; }
+  function money(value) { return Number.isInteger(value) ? String(value) : value.toFixed(2).replace(/0+$/, '').replace(/\.$/, ''); }
+  function tiers() {
+    const source = corpus().lodgingTiers || [];
+    return (Array.isArray(source) ? source : Object.entries(source).map(([key, value]) => ({ id: key, ...value }))).map((tier, index) => ({ ...tier, id: tier.id || tier.code || ['A', 'B', 'C'][index], cities: tier.cities || [], rates: tier.rates || [] }));
+  }
+  function roleFrom(query, previous) {
+    const previousRole = corpus().roles?.includes(previous) ? previous : '普通员工';
+    const explicitRole = /(?:我是|我现在是|我的职级[是为]|职级[是为]|作为|按|那(?:么)?|换成|改成|如果是)\s*(?:普通员工|部门经理|公司高管|高管|经理|总经理|副总)/.test(query);
+    if (/审批|批准/.test(query) && !explicitRole) return previousRole;
+    if (/公司高管|高管|总经理|副总/.test(query) && !/(?:高管|总经理|副总).{0,5}(?:审批|批准)|审批.*(?:高管|总经理|副总)/.test(query)) return '公司高管';
+    if (/部门经理|部门负责人|我是经理|那经理|经理呢/.test(query) && !/(?:部门经理|部门负责人).{0,5}(?:审批|批准)|(?:找|由)部门经理|审批.*部门经理/.test(query)) return '部门经理';
+    if (/普通员工|一般员工|基层员工/.test(query)) return '普通员工';
+    return corpus().roles?.includes(previous) ? previous : '普通员工';
+  }
+  function cityInfo(query, previous) {
+    const known = [...new Set([...tiers().flatMap(tier => tier.cities), ...mainlandOthers])].filter(city => typeof city === 'string' && !/其他|大陆/.test(city)).sort((a, b) => b.length - a.length);
+    const overseas = [...query.matchAll(new RegExp(overseasPattern.source, 'g'))].map(match => match[0]);
+    const mentioned = [...new Set([...known.filter(city => query.includes(city)), ...overseas])];
+    const stated = query.match(/(?:城市是|目的地是|城市为|目的地为)\s*([\u4e00-\u9fffA-Za-z]{2,12}?)(?:市)?(?=[，,。！？?\s]|出差|住宿|$)/)?.[1];
+    const directions = [...query.matchAll(/(?:前往|去往|去|到)\s*([\u4e00-\u9fffA-Za-z]{2,12}?)(?:市)?(?=出差|的住宿|住酒店|住宿|入住|[，,。！？?\s]|$)/g)].map(match => match[1]);
+    const directionalNames = mentioned.filter(city => new RegExp('(?:前往|去往|去|到)\\s*' + city + '(?:市)?').test(query));
+    const destinations = [...new Set([...directions, ...directionalNames])];
+    const compoundDestination = destinations.some(city => mentioned.filter(name => city.includes(name)).length > 1);
+    if (!stated && (destinations.length > 1 || compoundDestination || (!destinations.length && mentioned.length > 1))) return { city: '', tier: null, ambiguous: true, cities: mentioned };
+    let explicit = stated || destinations[0] || null;
+    if (!explicit && !mentioned.length) {
+      explicit = query.match(/在\s*([\u4e00-\u9fffA-Za-z]{2,10}?)(?:市)?(?:出差|的住宿|住酒店|住宿|入住)/)?.[1] || null;
+      const followup = query.match(/^那?([\u4e00-\u9fff]{2,6}?)(?:市)?(?:呢|住宿多少钱|住宿标准)[？?]?$/);
+      if (!explicit && followup && !/经理|员工|高管|住宿|费用|餐补|出差|公司|住|晚|天|元|餐|公里|多少|这样|这个|那个/.test(followup[1])) explicit = followup[1];
+    }
+    const city = explicit || mentioned[0] || (previous || '').replace(/市$/, '');
+    if (!city) return { city: '', tier: null };
+    if (overseasPattern.test(city)) return { city, tier: null, outside: true };
+    const tier = tiers().find(item => item.cities.includes(city)) || ((mainlandOthers.includes(city) || /^(其他中国大陆城市|其他大陆城市|其他城市|中国大陆其他城市)$/.test(city)) ? tiers().find(item => item.id === 'C') : null);
+    return { city, tier, unknown: !tier };
+  }
+  function nightsIn(query) {
+    const explicit = numberMatch(query, new RegExp('(?:住了?|住宿|入住|连住|共住)\\s*(' + numberPattern + ')\\s*(?:晚|夜)'));
+    if (explicit !== null) return explicit;
+    for (const match of query.matchAll(new RegExp('(' + numberPattern + ')\\s*(?:晚|夜)', 'g'))) {
+      const before = query.slice(0, match.index);
+      if (!/[每/\d元块]$/.test(before) && !/[一]$/.test(before)) return asNumber(match[1]);
+    }
+    return null;
+  }
+  function daysIn(query) { return numberMatch(query, new RegExp('(' + numberPattern + ')\\s*天')); }
+  function lodgingAmount(query) {
+    let value = numberMatch(query, new RegExp('(?:每晚|一晚|每间每晚|每间晚|每晚房费|每晚费用|每晚房价)(?:是|为|要|花费|花了|共|\\s)*(' + numberPattern + ')(?:元|块)?'));
+    if (value === null) value = numberMatch(query, new RegExp('(' + numberPattern + ')\\s*(?:元|块)?\\s*(?:/晚|/间.?晚|一晚|每晚|元每晚)'));
+    if (value !== null) return { value, kind: 'nightly' };
+    value = numberMatch(query, new RegExp('(?:总共|一共|总计|合计|总价|总额|总费用|共花了|共花|花了|共计|总共花费|共)\\s*(' + numberPattern + ')\\s*(?:元|块)?'));
+    if (value === null) value = numberMatch(query, new RegExp('(' + numberPattern + ')\\s*(?:元|块)?(?:总共|总价|总额|的总费用)'));
+    if (value !== null) return { value, kind: 'total' };
+    value = numberMatch(query, new RegExp('(' + numberPattern + ')\\s*(?:元|块)'));
+    return value !== null ? { value, kind: 'ambiguous' } : null;
+  }
+  function amountIn(query) {
+    const currency = query.match(/(?:¥|￥)\s*([\d,]+(?:\.\d+)?)/) || query.match(/(\d[\d,]*(?:\.\d+)?)\s*(?:元|块)/);
+    if (currency) return Number(currency[1].replace(/,/g, ''));
+    const candidate = query.match(/(?:报销|金额|费用|采购|付款|审批|预算)(?:金额|是|为|共|总计|合计|达|到|满|超过|不超过|未超过|\s)*(\d+(?:\.\d+)?)(?!\d*[-年月日])/);
+    if (candidate) return Number(candidate[1]);
+    const beforeApproval = query.match(/(\d+(?:\.\d+)?)\s*(?:谁|需要谁|怎么|如何|要谁)?审批/);
+    return beforeApproval ? Number(beforeApproval[1]) : null;
+  }
+  function result(topic, text, ids, context, resolved = true, suggestions = []) {
+    const citations = [...new Set(ids)].map(byId).filter(Boolean).map(({ docId, clauseId, title }) => ({ docId, clauseId, title }));
+    return { topic: topicLabels[topic] || topic, text, source: citations.length ? citations.map(citation => `${list().find(item => item.clauseId === citation.clauseId)?.docTitle} · ${citation.clauseId} ${citation.title}`).join('；') : '现有演示制度未覆盖 · 待人工确认', resolved: resolved && citations.length > 0, citations, context: { ...context, lastTopic: topic }, suggestions };
+  }
+  function lodging(query, context, info) {
+    const roleIndex = corpus().roles.indexOf(context.role);
+    const next = { ...context, city: info.city };
+    const explicitNights = nightsIn(query);
+    const nights = explicitNights === null ? (context.lastTopic === 'lodging' ? context.nights : null) : explicitNights;
+    if (nights) next.nights = nights;
+    const ids = ['TR-02'];
+    if (info.ambiguous) return result('lodging', `问题中提到了${info.cities.join('、')}，请确认实际住宿目的地；多个城市的住宿应按各自城市逐晚核定。当前按${context.role}，我暂不选用其中任何一个城市的额度。`, ids, next, false, info.cities.slice(0, 3).map(city => `${city}住宿标准多少？`));
+    if (info.outside) return result('lodging', `${info.city}属于境外或港澳台差旅，现有制度中的 A / B / C 类住宿标准只适用于中国大陆，不能直接套用。请在预订前由财务确认适用额度与审批安排。`, ['TR-08'], next, false, ['中国大陆住宿标准是什么？', '出差前需要哪些审批？']);
+    if (info.unknown) return result('lodging', `暂时无法确认“${info.city}”所属的住宿城市档位。请补充准确的中国大陆城市名称；明确属于其他中国大陆城市后，才可适用 C 类标准。当前职级按${context.role}。`, ids, next, false, ['深圳住宿多少钱？', '杭州住宿多少钱？', '其他中国大陆城市住宿标准']);
+    if (!info.tier) {
+      const table = tiers().map(tier => `${tier.id} 类${tier.id === 'A' ? '（北京、上海、广州、深圳）' : tier.id === 'B' ? '（杭州、南京、成都等制度列明城市）' : '（其他中国大陆城市）'}：${money(tier.rates[roleIndex])} 元/间·晚`).join('\n');
+      return result('lodging', `请补充出差城市，我就能给出对应额度。当前按${context.role}：\n${table}\n\n以上均为含税上限，凭合规发票按实际发生费用报销，不按上限发放补贴。`, ids, next, false, ['深圳住宿多少钱？', '杭州住宿多少钱？', '桂林住宿多少钱？']);
+    }
+    const limit = info.tier.rates[roleIndex];
+    let answer = `${info.city}属于 ${info.tier.id} 类城市。按${context.role}，住宿上限为 ${money(limit)} 元/间·晚（含税），凭合规发票按实际费用报销，未花满不补差额。`;
+    if (nights && nights > 0 && nights <= 365) answer += `\n\n住 ${nights} 晚、1 间房的标准上限合计为 ${money(limit)} × ${nights} = ${money(limit * nights)} 元；实际报销仍须逐晚符合标准。`;
+    const quoted = lodgingAmount(query);
+    let nightly = quoted?.kind === 'nightly' ? quoted.value : null;
+    if (quoted?.kind === 'total') {
+      if (!nights || nights <= 0) return result('lodging', `${answer}\n\n你提供的 ${money(quoted.value)} 元是总费用，还需要住宿晚数和逐晚房价，才能核对是否超标。`, ids, next, false, ['住三晚呢', '每晚600元能报吗？']);
+      nightly = quoted.value / nights;
+      answer += `\n你提供的总费用 ${money(quoted.value)} 元 ÷ ${nights} 晚，平均为 ${money(nightly)} 元/晚；平均数只用于初步测算，逐晚房价可能不同，须以酒店明细逐晚核对。`;
+    }
+    if (quoted?.kind === 'ambiguous') return result('lodging', `${answer}\n\n请确认 ${money(quoted.value)} 元是每晚房价还是全部住宿总额；如果是总额，请同时提供晚数。`, ids, next, false, ['每晚600元能报吗？', '住3晚，总共1500元能报吗？']);
+    if (nightly !== null) {
+      if (nightly > limit) {
+        const excess = nightly - limit, percent = excess / limit * 100;
+        ids.push('TR-03');
+        const approvers = percent <= 20 + 1e-9 ? '部门经理 + 财务负责人' : '分管副总 + 财务负责人';
+        answer += `\n\n${quoted.kind === 'total' ? '按平均房价测算，' : ''}${money(nightly)} 元/晚超过标准 ${money(excess)} 元/晚（${percent.toFixed(1)}%）。${percent <= 20 + 1e-9 ? '超标不超过 20%' : '超标超过 20%'}，须在预订前取得${approvers}的书面特批，并随报销提交必要性说明和价格证明。未获特批时，超出标准部分个人承担；不能直接按超标金额承诺报销。`;
+      } else answer += `\n\n${money(nightly)} 元/晚${nightly === limit ? '等于' : '低于'}标准，额度层面符合要求；还需有效出差审批、合规发票与住宿明细。${quoted.kind === 'total' ? '平均不超标不代表每晚均合规，请核对逐晚价格。' : ''}`;
+    } else if (/超标|超过|超出|特批|例外/.test(query)) {
+      ids.push('TR-03');
+      answer += `\n\n确需超标时，预订前先书面特批：超标不超过 20%（本标准 ${money(limit * 1.2)} 元/晚以内），由部门经理 + 财务负责人批准；超过 20%，由分管副总 + 财务负责人批准。附必要性说明和价格证明；未获特批的超额部分由个人承担。`;
+    }
+    return result('lodging', answer, ids, next, true, ['那部门经理呢', '住三晚呢', '每晚600元能报吗？']);
+  }
+  function meals(query, context) {
+    const policy = corpus().meals;
+    const days = daysIn(query) ?? (context.lastTopic === 'meals' ? context.days : null) ?? 1;
+    const mealQuery = query.replace(/(?:不|未|没有)(?:提供|供应|供|包含|含|包)(?:[早午晚]餐|[早午晚]饭|早)/g, '');
+    const supplied = /提供|包[早午晚餐]|含早|含[午晚]餐|已供|统一安排|免费|管饭|含餐/.test(mealQuery);
+    const types = supplied ? [['早餐', policy.breakfast, /早餐|早饭|含早|包早/], ['午餐', policy.lunch, /午餐|午饭|中餐|中饭|包午/], ['晚餐', policy.dinner, /晚餐|晚饭|包晚/]].filter(([, , expression]) => expression.test(mealQuery)) : [];
+    let answer = `${context.role}出差餐补统一为 ${policy.daily} 元/天，按批准的实际出差自然日计算。早餐 ${policy.breakfast} 元、午餐 ${policy.lunch} 元、晚餐 ${policy.dinner} 元。`;
+    const ids = ['ME-01'];
+    if (supplied || /扣减|扣除|重复|招待/.test(query)) ids.push('ME-02');
+    if (types.length) {
+      const deduction = types.reduce((sum, [, value]) => sum + value, 0);
+      const everyDay = /每天|每日|每一天|天天|全程/.test(query) || days === 1;
+      if (everyDay) answer += `\n\n已提供${types.map(([label]) => label).join('、')}，每天扣减 ${deduction} 元，剩余餐补 ${policy.daily - deduction} 元/天${days > 1 ? `；${days} 天合计 ${money((policy.daily - deduction) * days)} 元` : ''}。`;
+      else answer += `\n\n${days} 天扣减前餐补为 ${money(policy.daily * days)} 元。已提供${types.map(([label]) => label).join('、')}，每实际提供一组扣减 ${deduction} 元；请说明提供了几天或几餐，不能默认每天都提供。`;
+    } else if (days > 1) answer += `\n\n${days} 天未提供餐食时，餐补为 ${policy.daily} × ${days} = ${money(policy.daily * days)} 元。`;
+    if (supplied && !types.length) answer += '\n\n已提供餐食时，请说明具体提供早餐、午餐还是晚餐，以及餐次数，才能算出扣减后的金额。';
+    answer += '\n\n酒店含早、会议供餐、接待方提供或已作为业务招待报销的对应餐次须扣减，不能重复领取。';
+    if (!ids.includes('ME-02')) ids.push('ME-02');
+    return result('meals', answer, ids, { ...context, days }, !(supplied && (!types.length || (days > 1 && !/每天|每日|每一天|天天|全程/.test(query)))), ['酒店含早餐，餐补还剩多少？', '出差3天，每天含早餐，餐补多少？']);
+  }
+  function transport(query, context) {
+    const policy = corpus().transport, index = corpus().roles.indexOf(context.role);
+    if (/私车|自驾|油费|公里|里程|汽油|停车|过路|高速通行/.test(query)) {
+      const km = numberMatch(query, new RegExp('(' + numberPattern + ')\\s*(?:公里|千米|km)', 'i'));
+      const text = `私车公用须事前审批，按有效公务里程 ${money(policy.privateKm)} 元/公里补贴${km !== null ? `；${km} 公里对应 ${money(km * policy.privateKm)} 元` : ''}。该补贴已包含燃油、折旧与日常损耗，油费不得重复报销。${textOf(['TR-06'])}`;
+      return result('transport', text, ['TR-06'], context, true, ['私车公用100公里补贴多少？', '停车费和过路费可以报销吗？']);
+    }
+    if (/打车|网约车|出租车|市内|公交|地铁|行程单|停车|过路/.test(query)) return result('transport', `出差市内交通按实际发生费用报销，上限为 ${policy.localDaily} 元/人·天；${textOf(['TR-05'])}`, ['TR-05'], context, true, ['打车发票还需要什么附件？', '私车公用怎么报销？']);
+    return result('transport', `按${context.role}，高铁/动车标准为${policy.rail[index]}，飞机标准为${policy.flight[index]}。${textOf(['TR-04'])}`, ['TR-04'], context, true, ['那公司高管呢', '打车报销需要附行程单吗？']);
+  }
+  function approval(query, context) {
+    const amount = amountIn(query), rules = corpus().approval || [];
+    const specialIds = [];
+    if (/借款|借支|预支|备用金|核销/.test(query)) specialIds.push('PR-03');
+    if (/培训|学习|课程|考试/.test(query)) specialIds.push('PU-02');
+    if (/采购|办公用品|办公设备|电脑/.test(query)) specialIds.push('PU-01');
+    if (specialIds.length) {
+      const rule = amount === null ? null : rules.find(item => item.max === null || amount <= item.max);
+      const amountText = rule ? `金额审批另按报销单执行：若${specialIds.includes('PR-03') ? '后续实际' : '本次'}报销金额为 ${money(amount)} 元，审批链为：${rule.chain.join(' → ')}。${specialIds.includes('PR-03') ? '借款金额不等于最终可报销金额，应在核销时据实确认。' : ''}` : '报销单还须按实际报销金额执行 AP-01 审批。';
+      const ids = [...specialIds, 'AP-01', ...(/预算/.test(query) ? ['AP-02'] : [])];
+      return result('approval', `专项事前批准：\n${textOf(specialIds)}\n\n${amountText}\n\n${textOf(ids.filter(id => !specialIds.includes(id)))}`, ids, context, true, ['报销2000元谁审批？', '培训3000元需要哪些审批？']);
+    }
+    if (amount !== null) {
+      const rule = rules.find(item => item.max === null || amount <= item.max);
+      if (rule) return result('approval', `单笔报销 ${money(amount)} 元，审批链为：${rule.chain.join(' → ')}。\n\n${textOf(['AP-01'])}${/预算/.test(query) ? `\n\n${textOf(['AP-02'])}` : ''}`, /预算/.test(query) ? ['AP-01', 'AP-02'] : ['AP-01'], context, true, ['报销2000元谁审批？', '报销10000元谁审批？']);
+    }
+    return result('approval', textOf(/预算/.test(query) ? ['AP-02', 'AP-01'] : ['AP-01']), /预算/.test(query) ? ['AP-02', 'AP-01'] : ['AP-01'], context, true, ['报销2000元谁审批？', '报销10001元谁审批？']);
+  }
+  function search(query) {
+    const normalized = String(query || '').trim().toLowerCase();
+    const clauses = list();
+    if (!normalized) return clauses.map(({ tags, category, ...clause }) => clause);
+    const terms = normalized.split(/[\s，。！？、,!?;；]+/).filter(Boolean);
+    return clauses.map(clause => {
+      const title = `${clause.title} ${clause.docTitle}`.toLowerCase(), body = clause.body.toLowerCase();
+      let score = 0;
+      if (clause.clauseId.toLowerCase() === normalized) score += 100;
+      if (title.includes(normalized)) score += 30;
+      if (body.includes(normalized)) score += 12;
+      for (const term of terms) if (term.length >= 2) { if (title.includes(term)) score += 8; if (body.includes(term)) score += 2; }
+      for (const tag of clause.tags) if (String(tag).length >= 2 && normalized.includes(String(tag).toLowerCase())) score += 8;
+      return { ...clause, score };
+    }).filter(clause => clause.score > 0).sort((a, b) => b.score - a.score).map(({ tags, category, score, ...clause }) => clause);
+  }
+  function answer(question, suppliedContext = {}) {
+    const query = String(question || '').trim().replace(/[,，](?=\d{3}(?:\D|$))/g, '');
+    const context = { ...suppliedContext, role: roleFrom(query, suppliedContext.role), city: suppliedContext.city || '' };
+    if (!list().length) return result('其他待解答', '演示制度尚未加载，请刷新后重试。', [], context, false);
+    const info = cityInfo(query, context.city);
+    if (info.city) context.city = info.city;
+    const followup = /^(那|那么|如果|改成|换成|再|住|算|按|公司高管|部门经理|普通员工)/.test(query) && !/天气|景点|旅游攻略|股票|招聘|航班时刻|实时|汇率/.test(query);
+    const isLodging = /住宿|酒店|宾馆|房费|房价|每晚|一晚|\/晚|住[了\d一二两三四五六七八九十]/.test(query);
+    const isHospitality = /招待|接待|客户.*(?:吃饭|用餐|餐费|陪同)|陪同.*客户|(?:请|陪).*客户.*(?:饭|餐)|业务餐|工作餐/.test(query) && !/餐补|伙食补助|出差补助/.test(query);
+    const isMeals = /餐补|伙食补助|伙食补贴|出差补助|出差餐费|差旅餐费|含早|扣.*[早午晚]餐/.test(query);
+    const isApproval = /(?:谁|哪|怎么|如何|哪些).*(?:审批|批准)|审批(?:人|链|权限|流程|路径)|报销.*审批|金额.*审批|预算/.test(query);
+    if (/税率|抵扣率|增值税抵扣|法律责任|能否抵扣/.test(query)) return result('其他待解答', '现有公司演示制度不包含税率、税额抵扣或法律责任的判断依据，请提供具体业务与票据，由财务核实。', [], context, false);
+    if (/加班|夜班|通讯补贴|通信补贴|驻外津贴|驻外补贴/.test(query)) return result('其他补贴待确认', textOf(['ME-05']), ['ME-05'], context, false, ['出差餐补标准是什么？', '私车公用补贴标准是什么？']);
+    if (isApproval && /借款|借支|预支|备用金|核销|培训|学习|课程|考试|采购|办公用品|办公设备|电脑/.test(query)) return approval(query, context);
+    if (info.outside && (isMeals || /飞机|机票|火车|高铁|动车|交通|打车|私车|自驾/.test(query))) return result('travel', `${info.city}属于境外或港澳台差旅，现有中国大陆差旅额度不能直接套用。请联系财务确认当地标准及专项预算。`, ['TR-08'], context, false);
+    if (/外币|汇率|美元|欧元|港币|日元/.test(query)) return result('travel', '现有演示制度未提供外币汇率与折算规则，请向财务确认币种、日期和适用汇率后再计算报销金额。', ['TR-08'], context, false);
+    if (isMeals) return meals(query, context);
+    if (isHospitality) return result('hospitality', `业务招待餐费上限为 ${corpus().hospitality.perPerson} 元/人·次（含税），按实际参加人数计算，须事前审批。\n\n${textOf(['HO-01', 'HO-02'])}`, ['HO-01', 'HO-02'], context, true, ['招待客户需要哪些附件？', '客户3人能安排几人陪同？']);
+    if (/出差.*(?:申请|准备)|出差前.*审批/.test(query)) return result('travel', textOf(['TR-01']), ['TR-01'], context, true, ['深圳住宿多少钱？', '报销需要哪些附件？']);
+    if (/合住|同住|延住|酒店.*(?:取消|退款)|住宿.*(?:取消|退款)/.test(query)) return result('lodging', textOf(['TR-07']), ['TR-07'], context, true, ['深圳住宿多少钱？', '报销需要哪些附件？']);
+    if (isApproval && !/住宿.*超标|超标.*住宿|住宿.*特批|超标.*(?:审批|批准)/.test(query)) return approval(query, context);
+    if (isLodging || (followup && context.lastTopic === 'lodging' && (/经理|高管|员工|\d|[一二两三四五六七八九十].*晚|呢/.test(query)))) return lodging(query, context, info);
+    if (/飞机|机票|经济舱|商务舱|头等舱|火车|高铁|动车|二等座|一等座|交通|打车|网约车|出租车|私车|自驾|公里|里程|油费|停车|过路|地铁|行程单/.test(query) || (followup && context.lastTopic === 'transport' && /经理|高管|员工/.test(query))) return transport(query, context);
+    if (/发票|开票|抬头|税号|电子票|重复票|购买方|票据/.test(query)) {
+      const ids = /错|丢|重复|作废|红冲|退票|失效/.test(query) ? ['IN-03'] : /附件|材料|清单|原件|截图|pdf|PDF|下载/.test(query) ? ['IN-02'] : ['IN-01'];
+      return result('invoice', textOf(ids), ids, context, true, ['发票抬头和税号是什么？', '发票抬头开错了怎么办？', '报销需要哪些附件？']);
+    }
+    if (/采购|办公用品|办公设备|电脑|培训|学习|课程/.test(query)) {
+      const ids = /培训|学习|课程/.test(query) ? ['PU-02'] : ['PU-01'];
+      return result('purchase', textOf(ids), ids, context, true, ['购买办公用品需要事前审批吗？', '外部培训怎么报销？']);
+    }
+    if (/报销.*(?:材料|附件)|(?:材料|附件).*报销/.test(query)) return result('invoice', textOf(['IN-02']), ['IN-02'], context, true, ['发票抬头和税号是什么？', '什么时候提交报销？']);
+    if (/借款|借支|预支|冲销|核销/.test(query)) return result('process', textOf(['PR-03']), ['PR-03'], context, true, ['借款需要多久结清？', '报销多久付款？']);
+    if (/退回|驳回|补正|补材料|重新提交/.test(query)) return result('process', textOf(['PR-04']), ['PR-04'], context, true, ['报销需要哪些附件？', '报销多久审核？']);
+    if (/多久|截止|截止日|时限|工作日|提交时间|什么时候.*报销|报销.*时间|多久到账|什么时候.*(?:付款|支付)|审核|打款|付款|月结|每月|日期/.test(query) && /报销|提交|审核|付款|打款|到账|结算|截止|月结/.test(query)) {
+      const ids = /审核|付款|到账|打款|支付/.test(query) ? ['PR-02'] : ['PR-01'];
+      return result('process', textOf(ids), ids, context, true, ['出差回来几天内提交报销？', '报销审核后多久付款？']);
+    }
+    if (/出差.*(?:申请|审批|准备)|(?:申请|审批).*出差|出差前/.test(query)) return result('travel', textOf(['TR-01']), ['TR-01'], context, true, ['深圳住宿多少钱？', '报销需要哪些附件？']);
+    if (followup && context.lastTopic === 'meals' && /天|餐|经理|高管|员工/.test(query)) return meals(query, context);
+    const matches = search(query);
+    const strong = matches.filter(clause => clause.title.includes(query) || clause.clauseId.toLowerCase() === query.toLowerCase() || (byId(clause.clauseId)?.tags || []).some(tag => String(tag).length >= 3 && query.includes(tag)));
+    if (query.length >= 2 && strong.length && !/天气|旅游|股票|招聘|编程|写诗|法律|税率|抵扣率/.test(query)) {
+      const best = strong.slice(0, 2);
+      return result(best[0].docTitle, best.map(item => item.body).join('\n\n'), best.map(item => item.clauseId), context, true, []);
+    }
+    return result('其他待解答', '现有演示制度没有足够依据回答这个问题，已标记为待人工确认。你可以补充费用类型、城市、职级、金额或具体疑问，财务再确认适用规则。', [], context, false, ['深圳出差住宿多少钱？', '出差餐补标准是什么？', '发票抬头和税号是什么？']);
+  }
+  function markdown(docId) {
+    const knowledge = corpus(), docs = knowledge.docs.filter(doc => !docId || doc.id === docId);
+    if (!docs.length) return '';
+    return `# ${knowledge.company} · 财务制度知识库\n\n版本：${knowledge.version}\n生效日期：${knowledge.effectiveDate}\n\n${knowledge.disclaimer}\n\n` + docs.map(doc => `## ${doc.title}\n\n${doc.summary}\n\n` + doc.clauses.map(clause => `### ${clause.id} ${clause.title}\n\n${clause.body}`).join('\n\n')).join('\n\n---\n\n');
+  }
+  return { answer, search, markdown };
+})();
+function knowledgeAnswer(question, context = {}) { return ExpenseKnowledgeEngine.answer(question, context); }
+function knowledgeSearch(query) { return ExpenseKnowledgeEngine.search(query); }
+function knowledgeMarkdown(docId) { return ExpenseKnowledgeEngine.markdown(docId); }
+
+'use strict';
+const icons={dashboard:'<rect x="3" y="3" width="7" height="7" rx="1.3"/><rect x="14" y="3" width="7" height="7" rx="1.3"/><rect x="3" y="14" width="7" height="7" rx="1.3"/><rect x="14" y="14" width="7" height="7" rx="1.3"/>',receipt:'<path d="M6 3h12v18l-3-2-3 2-3-2-3 2z"/><path d="M9 8h6m-6 4h6"/>',invoice:'<path d="M14 3H6v18h13V8z"/><path d="M14 3v5h5M9 12h7m-7 4h5"/>',chat:'<path d="M21 11a8 8 0 0 1-8 8H7l-4 3V11a9 9 0 0 1 18 0Z"/><path d="M7 10h10m-10 4h6"/>',chart:'<path d="M4 3v17h17M8 15v-4m5 4V7m5 8V4"/>',book:'<path d="M12 5c-3-3-7-2-9-1v15c3-1 6-1 9 1 3-2 6-2 9-1V4c-2-1-6-2-9 1Zm0 0v15"/>',settings:'<path d="m9 3-1 3-3 1-2 3 2 3v4l3 2 4-1 4 1 3-2v-4l2-3-2-3-3-1-1-3z"/><circle cx="12" cy="11" r="3"/>',arrow:'<path d="M4 12h16m-6-6 6 6-6 6"/>',down:'<path d="m6 9 6 6 6-6"/>',upload:'<path d="M12 16V3m-5 5 5-5 5 5M4 15v5h16v-5"/>',download:'<path d="M12 3v13m-5-5 5 5 5-5M4 16v5h16v-5"/>',plus:'<path d="M12 4v16M4 12h16"/>',search:'<circle cx="10.5" cy="10.5" r="6.5"/><path d="m16 16 5 5"/>',check:'<path d="m5 12 4 4L19 6"/>',checkCircle:'<circle cx="12" cy="12" r="9"/><path d="m8 12 3 3 5-6"/>',clock:'<circle cx="12" cy="12" r="9"/><path d="M12 6v6l4 2"/>',warn:'<path d="m12 3 10 18H2zM12 9v5m0 3v.1"/>',close:'<path d="m6 6 12 12M18 6 6 18"/>',bot:'<rect x="3" y="7" width="18" height="14" rx="4"/><path d="M12 7V3m-2 0h4M7 11v3m10-3v3m-9 3h8"/>',spark:'<path d="m12 3 2.5 6.5L21 12l-6.5 2.5L12 21l-2.5-6.5L3 12l6.5-2.5z"/>',user:'<circle cx="12" cy="8" r="4"/><path d="M4 21v-2a8 8 0 0 1 16 0v2"/>',exit:'<path d="M10 3H4v18h6m5-15 6 6-6 6m-6-6h12"/>',menu:'<path d="M4 6h16M4 12h16M4 18h16"/>',folder:'<path d="M3 7V4h7l3 3h8v14H3z"/>',shield:'<path d="m12 2 9 4v7c0 4-5 7-9 9-4-2-9-5-9-9V6z"/><path d="m8 11 3 3 5-6"/>',mail:'<rect x="3" y="5" width="18" height="14" rx="2"/><path d="m3 6 9 7 9-7"/>',refresh:'<path d="M20 8a8 8 0 1 0 0 8M20 3v5h-5"/>',calendar:'<rect x="3" y="5" width="18" height="16" rx="2"/><path d="M7 3v4m10-4v4M3 11h18"/>',branch:'<circle cx="6" cy="5" r="2"/><circle cx="18" cy="5" r="2"/><circle cx="6" cy="19" r="2"/><path d="M6 7v10M18 7a8 8 0 0 1-8 8H6"/>'};
+const icon=n=>`<svg class="icon" aria-hidden="true" viewBox="0 0 24 24">${icons[n]||icons.receipt}</svg>`;
+const esc=v=>String(v??'').replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+const money=v=>Number(v).toLocaleString('zh-CN',{minimumFractionDigits:2,maximumFractionDigits:2});
+const moneyShort=v=>v>=10000?(v/10000).toFixed(2)+' 万':money(v);
+const depts=['运营管理部','工程技术部','市场发展部','综合管理部','财务管理部'];
+const cats=['差旅交通','住宿费用','业务招待','办公采购','其他费用'];
+const colors=['#2c6750','#79a180','#b4c7a2','#d0b680','#e0e7d7'];
+const people=['林悦','陈明','王晓','李然','周宁','赵嘉','刘航','徐晴'];
+const topics=['出差住宿标准','发票抬头与税号','差旅交通凭证','业务招待附件','报销提交时限'];
+const questionText=['出差住宿超过标准了怎么办？','发票抬头开错了可以报销吗？','打车报销需要附行程单吗？','业务招待费需要准备哪些附件？','出差结束多久内提交报销？'];
+const sampleDocs=DEMO_KNOWLEDGE.docs.map(d=>{const content=knowledgeMarkdown(d.id);return {id:d.id,title:d.title,summary:d.summary,type:'虚构制度',version:d.version,category:d.category,date:DEMO_KNOWLEDGE.effectiveDate,size:(new Blob([content]).size/1024).toFixed(1)+' KB',content,clauses:d.clauses,builtin:true};});
+function makeSeed(){
+ const expenses=[];
+ for(let i=0;i<76;i++){
+  const month=i<48?'10':i<66?'09':'08';const day=i<48?22-Math.floor(i/2.3):28-(i%18);
+  const category=cats[i%5],person=people[i%8],dept=depts[i%5];
+  const status=i<14?'pending':i<20?'returned':i<28?'approved':'paid';
+  const issue=i<20&&i%4===0?'缺少行程附件':i<20&&i%7===0?'需核对发票抬头':'';
+  const amount=Math.round((360+((i*733+430)%7200)+(i%3)*.36)*100)/100;
+  const date=`2026-${month}-${String(Math.max(day,1)).padStart(2,'0')}`;
+  const title=[`${['郑州','洛阳','焦作','武汉'][i%4]}项目出差费用`,'项目驻场住宿费用','客户交流接待费用','部门办公用品采购','项目培训及服务费用'][i%5];
+  expenses.push({id:'BX2026'+String(1076-i).padStart(5,'0'),title,person,dept,category,amount,date,status,issue,invoiceNo:'24611000'+String(300000+i),company:'星澜能源科技有限公司（虚构）',files:[{id:'seed-'+i,name:i%2?'电子发票.pdf':'差旅费用凭证.pdf',size:228300,sample:true}],note:'用于演示的报销记录，不代表真实企业业务。',mine:i%8===0,history:[{text:'员工提交报销申请',date:date+' 09:30'},{text:issue?'规则预审发现待核对项':'规则预审完成，待财务复核',date:date+' 09:31'},...(status==='approved'||status==='paid'?[{text:'财务模拟审核通过',date:date+' 15:20'}]:[]),...(status==='returned'?[{text:'退回补充：附件信息不完整',date:date+' 15:20'}]:[]),...(status==='paid'?[{text:'示例记录：已支付（非真实付款）',date:date+' 16:40'}]:[])]});
+ }
+ const logs=Array.from({length:64},(_,i)=>{const topic=i<24?0:i<40?1:i<52?2:i<59?3:4;return{id:'QA'+(1000+i),person:people[i%8],dept:depts[i%5],question:questionText[topic],topic:topics[topic],date:'2026-10-'+String(22-Math.floor(i/4)).padStart(2,'0'),resolved:i%9!==0,answer:policyAnswer(questionText[topic]).text,source:policyAnswer(questionText[topic]).source,sample:true};});
+ return {expenses,logs,docs:sampleDocs,receipts:[],draft:null,knowledgeVersion:DEMO_KNOWLEDGE.version};
+}
+function policyAnswer(q,context={}){return knowledgeAnswer(q,context);}
+const STORE='expense-workbench-v1';let state;
+try{const raw=JSON.parse(localStorage.getItem(STORE));state=raw&&Array.isArray(raw.expenses)&&Array.isArray(raw.logs)&&Array.isArray(raw.docs)&&Array.isArray(raw.receipts)?raw:makeSeed();}catch{state=makeSeed();}
+let view='overview',role='finance',period='2026-10',department='all',statusFilter='all',searchQuery='',currentPage=1,selectedId=null,chatMessages=[],newFiles=[...(state.draft?.files||[])],invoiceFiles=[],knowledgeFiles=[],lastSubmitted=null,storageWarning=false,formMemory={...(state.draft?.values||{})},revisionId=state.draft?.revisionId||null;
+let chatContext={role:DEMO_KNOWLEDGE.defaultRole,city:''},knowledgeQuery='';
+function migrateKnowledge(){
+ if(state.knowledgeVersion===DEMO_KNOWLEDGE.version)return;
+ const builtins=new Set(['policy-travel','policy-invoice','policy-process',...sampleDocs.map(d=>d.id)]);
+ state.docs=[...state.docs.filter(d=>!builtins.has(d.id)),...sampleDocs];
+ state.logs=state.logs.map(l=>{if(!l.sample||l.source?.startsWith('财务人工补充'))return l;const answer=policyAnswer(l.question);return {...l,answer:answer.text,source:answer.source,citations:answer.citations};});
+ state.knowledgeVersion=DEMO_KNOWLEDGE.version;
+ try{localStorage.setItem(STORE,JSON.stringify(state));}catch{storageWarning=true;}
+}
+migrateKnowledge();
+let dbPromise;
+function db(){if(!dbPromise)dbPromise=new Promise((resolve,reject)=>{const r=indexedDB.open('expense-workbench-files',1);r.onupgradeneeded=()=>r.result.createObjectStore('files',{keyPath:'id'});r.onsuccess=()=>resolve(r.result);r.onerror=()=>reject(r.error);});return dbPromise;}
+async function putFile(file){const id=crypto.randomUUID();const base=await db();await new Promise((resolve,reject)=>{const tx=base.transaction('files','readwrite');tx.objectStore('files').put({id,file});tx.oncomplete=resolve;tx.onerror=()=>reject(tx.error);});return{id,name:file.name,size:file.size,type:file.type};}
+async function getFile(id){const base=await db();return new Promise((resolve,reject)=>{const r=base.transaction('files').objectStore('files').get(id);r.onsuccess=()=>resolve(r.result?.file);r.onerror=()=>reject(r.error);});}
+function persist(){try{localStorage.setItem(STORE,JSON.stringify(state));return true;}catch{storageWarning=true;toast('浏览器存储空间不足，请先导出数据；本次修改仅在当前页面有效。');return false;}}
+function toast(msg){const el=document.getElementById('toast');el.textContent=msg;el.classList.add('visible');clearTimeout(toast.timer);toast.timer=setTimeout(()=>el.classList.remove('visible'),4200);}
+function stamp(){return new Date().toLocaleString('sv-SE',{timeZone:'Asia/Shanghai'}).slice(0,16);}
+function selectedRows({mine=false}={}){return state.expenses.filter(r=>(!mine||r.mine)&&(period==='quarter'?r.date>='2026-08-01'&&r.date<='2026-10-31':r.date.startsWith(period))&&(department==='all'||r.dept===department));}
+function selectedLogs(){return state.logs.filter(r=>(period==='quarter'?r.date>='2026-08-01'&&r.date<='2026-10-31':r.date.startsWith(period))&&(department==='all'||r.dept===department));}
+function sum(rows){return Math.round(rows.reduce((t,r)=>t+r.amount,0)*100)/100;}
+function statusBadge(s){return`<span class="badge ${s==='pending'?'warn':s==='returned'?'red':s==='paid'?'gray':''}"><i class="dot"></i>${({pending:'待审核',returned:'已退回',approved:'待支付',paid:'已支付'})[s]||s}</span>`;}
+function heading(title,subtitle,actions=''){return`<div class="page-heading"><div><h1>${title}</h1><p>${subtitle}</p></div>${actions?`<div class="heading-actions">${actions}</div>`:''}</div>`;}
+function filters(){return`<select class="compact-select" id="dept-filter" aria-label="部门筛选"><option value="all">全部部门</option>${depts.map(d=>`<option ${department===d?'selected':''}>${d}</option>`).join('')}</select><select class="compact-select" id="period-filter" aria-label="统计时间"><option value="2026-10" ${period==='2026-10'?'selected':''}>2026 年 10 月</option><option value="2026-09" ${period==='2026-09'?'selected':''}>2026 年 9 月</option><option value="quarter" ${period==='quarter'?'selected':''}>近三个月</option></select>`;}
+function shell(){
+ const financeNav=[['overview','dashboard','工作台总览'],['expenses','receipt','报销预审'],['invoices','invoice','发票中心'],['logs','chat','咨询日志'],['insights','chart','问题洞察']];
+ const employeeNav=[['employee','dashboard','我的工作台'],['consult','chat','报销咨询'],['new','plus','发起报销'],['mine','receipt','我的报销']];
+ document.getElementById('sidebar').innerHTML=`<a class="brand" href="#" data-view="${role==='finance'?'overview':'employee'}"><span class="brand-mark">${icon('receipt')}</span><span>报销有数<small>EXPENSE WORKSPACE</small></span></a><div class="workspace"><span class="square">财</span><div>财务预审工作台<br><span class="muted" style="font-size:10px">${role==='finance'?'财务管理空间':'员工服务空间'}</span></div>${icon('down')}</div><div class="nav-label">${role==='finance'?'财务工作台':'员工工作台'}</div><nav aria-label="主导航" class="nav-group">${(role==='finance'?financeNav:employeeNav).map(([id,ic,title])=>`<button class="nav-link ${view===id?'active':''}" data-view="${id}" ${view===id?'aria-current="page"':''}>${icon(ic)}${title}${id==='expenses'?`<span class="nav-count">${state.expenses.filter(r=>r.status==='pending').length}</span>`:''}</button>`).join('')}</nav><div class="nav-divider"></div><div class="nav-label">支持与配置</div><nav aria-label="支持与配置" class="nav-group"><button class="nav-link ${view==='knowledge'?'active':''}" data-view="knowledge">${icon('book')}制度知识库</button><button class="nav-link ${view==='settings'?'active':''}" data-view="settings">${icon('settings')}连接与设置</button></nav><div class="sidebar-bottom"><div class="connection-note"><strong><i class="dot"></i>交互演示空间</strong>上传与操作保存在本浏览器<br>WorkBuddy 尚未连接</div><div class="profile"><span class="avatar">${role==='finance'?'财':'林'}</span><span class="profile-text">${role==='finance'?'财务管理员':'林悦'}<small>${role==='finance'?'管理视图 · 示例角色':'员工视图 · 示例角色'}</small></span>${icon('down')}</div></div>`;
+ const labels={overview:'工作台总览',expenses:'报销预审',invoices:'发票中心',logs:'咨询日志',insights:'问题洞察',knowledge:'制度知识库',settings:'连接与设置',employee:'我的工作台',consult:'报销咨询',new:'发起报销',mine:'我的报销',submitted:'提交结果',report:'报销报告'};
+ document.getElementById('topbar').innerHTML=`<div class="breadcrumb"><button class="icon-btn mobile-menu" data-action="menu" aria-label="打开导航">${icon('menu')}</button><span>${role==='finance'?'财务管理':'员工服务'}</span><span class="slash">/</span><strong>${labels[view]||'工作台'}</strong></div><div class="top-actions"><span class="demo-tag">DEMO · 演示版</span><button class="btn" data-action="switch-role">${icon(role==='finance'?'user':'dashboard')}${role==='finance'?'员工入口':'返回财务后台'}${icon('arrow')}</button><span class="avatar">${role==='finance'?'财':'林'}</span></div>`;
+ if(!document.querySelector('.menu-scrim')){const b=document.createElement('button');b.className='menu-scrim';b.ariaLabel='关闭导航';b.dataset.action='close-menu';document.body.append(b);}
+}
+function navigate(next){if(view==='new'&&next!=='submitted')rememberForm();view=next;currentPage=1;searchQuery='';statusFilter='all';shell();render();document.getElementById('sidebar').classList.remove('open');document.querySelector('.menu-scrim')?.classList.remove('open');window.scrollTo({top:0});}
+function render(){const main=document.getElementById('main');const pages={overview:overviewPage,expenses:expensesPage,invoices:invoicesPage,logs:logsPage,insights:insightsPage,knowledge:knowledgePage,settings:settingsPage,employee:employeePage,consult:consultPage,new:newPage,mine:expensesPage,submitted:submittedPage,report:reportPage};main.innerHTML=(pages[view]||overviewPage)();if(storageWarning)main.insertAdjacentHTML('afterbegin','<div class="notice warning">浏览器存储不可用或已满。请导出需要保留的数据。</div>');if(view==='new')restoreForm();bindPage();}
+function kpis(rows){const logs=selectedLogs(),pending=rows.filter(r=>r.status==='pending'),resolved=logs.filter(r=>r.resolved).length;return`<div class="stats-row"><section class="stat"><div class="stat-top">报销总金额${icon('receipt')}</div><div class="stat-value num"><span class="currency">¥</span>${moneyShort(sum(rows))}</div><div class="stat-foot"><b>${rows.length} 笔申请</b><span>所选期间累计</span></div></section><section class="stat"><div class="stat-top">待审核报销${icon('clock')}</div><div class="stat-value num">${pending.length}<span class="unit">笔</span></div><div class="stat-foot"><b class="warn">${pending.filter(r=>r.issue).length} 笔待核对</b><span>需要财务关注</span></div></section><section class="stat"><div class="stat-top">预审无异常${icon('shield')}</div><div class="stat-value num">${rows.length?Math.round(rows.filter(r=>!r.issue).length/rows.length*100):0}<span class="unit">%</span></div><div class="stat-foot"><b>${rows.filter(r=>!r.issue).length} 笔</b><span>仍需人工复核</span></div></section><section class="stat"><div class="stat-top">报销咨询${icon('chat')}</div><div class="stat-value num">${logs.length}<span class="unit">次</span></div><div class="stat-foot"><b>${resolved} 次匹配指引</b><span>示例日志统计</span></div></section></div>`;}
+function trend(rows){const buckets=period==='quarter'?['8 月','9 月','10 月']:['01–04','05–08','09–12','13–16','17–20','21–末'];const totals=buckets.map(()=>0),paid=buckets.map(()=>0);rows.forEach(r=>{const i=period==='quarter'?Number(r.date.slice(5,7))-8:Math.min(5,Math.floor((Number(r.date.slice(8,10))-1)/4));if(i>=0&&i<totals.length){totals[i]+=r.amount;if(r.status==='paid'||r.status==='approved')paid[i]+=r.amount;}});const max=Math.max(...totals,10000),top=Math.ceil(max/10000)*10000;const w=600,h=177,left=51,right=18,bottom=152;const x=i=>left+(w-left-right)*i/(buckets.length-1);const y=v=>bottom-(v/top)*124;const path=arr=>arr.map((v,i)=>`${i?'L':'M'}${x(i)},${y(v)}`).join(' ');return`<svg class="trend-chart" viewBox="0 0 600 182" role="img" aria-label="报销金额趋势，实线为申请金额，浅色线为已审核金额">${[0,1,2,3].map(i=>{const yy=bottom-i*124/3;return`<line x1="${left}" y1="${yy}" x2="582" y2="${yy}" stroke="#edf1e8" stroke-dasharray="3 4"/><text x="7" y="${yy+4}">${(top*i/3/10000).toFixed(1)} 万</text>`;}).join('')}<path d="${path(totals)} L582,${bottom} L${left},${bottom}Z" fill="#eff5e7"/><path d="${path(paid)}" fill="none" stroke="#bdcfad" stroke-width="2.2" stroke-dasharray="5 4"/><path d="${path(totals)}" fill="none" stroke="#3e7757" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round"/>${totals.map((v,i)=>`<circle cx="${x(i)}" cy="${y(v)}" r="3.6" fill="#fff" stroke="#3e7757" stroke-width="2"><title>${buckets[i]}：申请 ¥${money(v)}，已审核 ¥${money(paid[i])}</title></circle>`).join('')}${buckets.map((v,i)=>`<text x="${x(i)}" y="176" text-anchor="middle">${v}</text>`).join('')}</svg>`;}
+function categories(rows){const total=sum(rows),values=cats.map(c=>sum(rows.filter(r=>r.category===c)));let offset=0;const arcs=values.map((v,i)=>{const percent=total?v/total*100:0;const arc=`<circle cx="80" cy="80" r="62" fill="none" stroke="${colors[i]}" stroke-width="16" pathLength="100" stroke-dasharray="${Math.max(0,percent-.8)} ${100-Math.max(0,percent-.8)}" stroke-dashoffset="${-offset}"><title>${cats[i]} ¥${money(v)}</title></circle>`;offset+=percent;return arc;});return`<div class="category-content"><div class="donut-wrap"><svg viewBox="0 0 160 160" role="img" aria-label="各类报销费用占比"><circle cx="80" cy="80" r="62" fill="none" stroke="#f0f3eb" stroke-width="16"/>${arcs.join('')}</svg><div class="donut-center"><span>费用类型</span><strong>${values.filter(v=>v>0).length}</strong><span>类支出</span></div></div><div class="category-legend">${cats.map((c,i)=>`<div class="category-line"><i class="color-dot" style="background:${colors[i]}"></i><span>${c}</span><strong class="num">${total?Math.round(values[i]/total*100):0}%</strong></div>`).join('')}</div></div><div class="category-note">按报销金额统计 · 点击「查看明细」查看原始记录</div>`;}
+function rankedTopics(){const logs=selectedLogs();const counts={};logs.forEach(l=>counts[l.topic]=(counts[l.topic]||0)+1);return Object.entries(counts).sort((a,b)=>b[1]-a[1]);}
+function hotList(){const ranked=rankedTopics();if(!ranked.length)return'<div class="empty"><h3>所选期间暂无咨询</h3><p>员工提问后会显示问题分布。</p></div>';return`<div class="hot-list">${ranked.slice(0,4).map(([t,n],i)=>`<div class="hot-item"><div class="hot-top"><span class="hot-rank">${String(i+1).padStart(2,'0')}</span><strong>${esc(t)}</strong><span class="num">${n} 次</span></div><div class="bar-track"><div class="bar-fill" style="width:${n/ranked[0][1]*100}%;background:${i===0?'#3c7755':i===1?'#80a17a':'#b3c8a2'}"></div></div></div>`).join('')}</div>`;}
+function overviewPage(){const rows=selectedRows(),pending=rows.filter(r=>r.status==='pending'),returned=rows.filter(r=>r.status==='returned'),ready=rows.filter(r=>r.status==='approved'),top=rankedTopics()[0];return heading('让每一笔报销，都有据可循。','2026 年 10 月 22 日，星期四 · 这是你的财务工作台',filters()+`<button class="btn" data-action="export-csv">${icon('download')}导出报表</button>`)+kpis(rows)+`<div class="wide-grid"><section class="pending-panel"><div class="pending-head"><h2>${icon('folder')}今日待办</h2><span>所选范围内的处理队列</span></div><div class="queue-grid"><div class="queue"><strong class="num">${pending.length}</strong><span>报销待审核</span><button class="queue-action" data-queue="pending">去审核${icon('arrow')}</button></div><div class="queue"><strong class="num">${returned.length}</strong><span>退回待补充</span><button class="queue-action" data-queue="returned">查看进度${icon('arrow')}</button></div><div class="queue"><strong class="num">${ready.length}</strong><span>审核后待支付</span><button class="queue-action" data-queue="approved">查看明细${icon('arrow')}</button></div></div></section><section class="insight-panel"><div class="insight-head">${icon('spark')}本期问题提示</div><p>${top?`「${esc(top[0])}」被咨询 <b>${top[1]} 次</b>，<br>建议纳入下一次员工报销培训。`:'所选范围暂无咨询记录，<br>试试从员工入口发起一次咨询。'}</p><button data-view="insights">查看问题分析与培训建议${icon('arrow')}</button></section></div><div class="two-col"><section class="panel"><div class="panel-head"><div><h2>报销金额趋势</h2><p>按费用发生日期汇总 · 单位：元</p></div><div class="legend"><span><i></i>申请金额</span><span><i class="soft"></i>已审核</span></div></div>${trend(rows)}<div class="chart-foot"><span>本期已审核 <b>¥ ${money(sum(rows.filter(r=>['paid','approved'].includes(r.status))))}</b></span><span>示例数据，随筛选联动</span></div></section><section class="panel"><div class="panel-head"><h2>费用构成</h2><button class="btn subtle" data-view="expenses">查看明细${icon('arrow')}</button></div>${categories(rows)}</section></div><div class="bottom-grid"><section class="panel"><div class="panel-head"><h2>最近报销</h2><button class="btn subtle" data-view="expenses">全部报销${icon('arrow')}</button></div><div class="table-toolbar"><div class="tabs"><button class="tab ${statusFilter==='all'?'active':''}" data-status="all">全部申请</button><button class="tab ${statusFilter==='pending'?'active':''}" data-status="pending">待审核<span>${pending.length}</span></button><button class="tab ${statusFilter==='returned'?'active':''}" data-status="returned">已退回</button></div><div class="small muted">最新 5 笔</div></div>${expenseTable(rows.filter(r=>statusFilter==='all'||r.status===statusFilter).slice(0,5),true)}<div class="table-bottom"><span>共 ${rows.length} 笔申请 · 演示记录</span><button class="table-action" data-view="expenses">查看所有记录 →</button></div></section><section class="panel"><div class="panel-head"><h2>高频咨询问题</h2><span class="small muted">${selectedLogs().length} 次咨询</span></div>${hotList()}<div class="hot-foot">将反复出现的问题，变成员工看得懂的指引。</div></section></div>`;}
+function expenseTable(rows,compact=false){if(!rows.length)return`<div class="empty">${icon('search')}<h3>没有匹配的报销记录</h3><p>换一个时间、部门或搜索词试试。</p></div>`;return`<div class="table-wrap"><table><thead><tr><th>报销事项</th><th>申请人</th>${!compact?'<th>费用类型</th><th>发生日期</th>':''}<th>金额</th><th>状态</th>${!compact?'<th>预审提示</th>':''}<th>操作</th></tr></thead><tbody>${rows.map(r=>`<tr><td><span class="cell-title">${esc(r.title)}</span><span class="cell-sub">${esc(r.id)}</span></td><td><div class="person-cell"><span class="avatar">${esc(r.person[0])}</span><span>${esc(r.person)}${!compact?`<span class="cell-sub">${esc(r.dept)}</span>`:''}</span></div></td>${!compact?`<td>${esc(r.category)}</td><td class="num">${esc(r.date)}</td>`:''}<td class="money num">¥ ${money(r.amount)}</td><td>${statusBadge(r.status)}</td>${!compact?`<td><span class="badge ${r.issue?'warn':''}">${esc(r.issue||'未发现字段异常')}</span></td>`:''}<td><button class="table-action" data-detail="${r.id}">${role==='finance'&&r.status==='pending'?'审核':'查看'}</button></td></tr>`).join('')}</tbody></table></div>`;}
+function filteredExpenses(){return selectedRows({mine:view==='mine'}).filter(r=>(statusFilter==='all'||r.status===statusFilter)&&(!searchQuery||[r.title,r.id,r.person,r.dept].some(v=>v.toLowerCase().includes(searchQuery.toLowerCase()))));}
+function expensesPage(){const mine=view==='mine',all=selectedRows({mine}),rows=filteredExpenses();return heading(mine?'我的报销':'报销预审',mine?'查看申请进度、退回原因与报销报告。':'先核对异常，再完成复核。每次操作都会留在报销日志里。',filters()+`<button class="btn ${mine?'primary':''}" data-action="${mine?'new-expense':'export-csv'}">${icon(mine?'plus':'download')}${mine?'发起报销':'导出明细'}</button>`)+`<section class="panel full-panel"><div class="table-toolbar"><div class="tabs">${[['all','全部'],['pending','待审核'],['returned','已退回'],['approved','待支付'],['paid','已支付']].map(([s,l])=>`<button class="tab ${statusFilter===s?'active':''}" data-status="${s}">${l}<span>${all.filter(r=>s==='all'||r.status===s).length}</span></button>`).join('')}</div></div><div class="filter-line"><div class="search">${icon('search')}<input id="expense-search" aria-label="搜索报销" placeholder="搜索报销事项、单号或申请人" value="${esc(searchQuery)}"></div><span class="filter-label">${mine?'当前示例员工：林悦':'规则预审仅供参考，最终由财务复核'}</span></div><div id="expense-results">${expenseResults(rows)}</div></section>`;}
+function expenseResults(rows){const pages=Math.max(1,Math.ceil(rows.length/8));currentPage=Math.min(currentPage,pages);return expenseTable(rows.slice((currentPage-1)*8,currentPage*8))+`<div class="table-bottom"><span>共 ${rows.length} 笔 · 第 ${currentPage} / ${pages} 页</span><div class="pagination"><button data-page="${currentPage-1}" ${currentPage===1?'disabled':''} aria-label="上一页">‹</button>${Array.from({length:pages},(_,i)=>`<button class="${currentPage===i+1?'active':''}" data-page="${i+1}" aria-label="第 ${i+1} 页">${i+1}</button>`).join('')}<button data-page="${currentPage+1}" ${currentPage===pages?'disabled':''} aria-label="下一页">›</button></div></div>`;}
+function employeePage(){const rows=state.expenses.filter(r=>r.mine),pending=rows.filter(r=>r.status==='pending').length,returned=rows.filter(r=>r.status==='returned').length;return`<section class="employee-welcome"><div><h1>林悦，你好。<br>把报销的事，简单一点。</h1><p>报销前先问清楚，提交时少走弯路。</p></div><button class="btn" data-view="new">${icon('plus')}发起一笔报销</button></section><div class="service-actions"><button class="service-action" data-view="consult">${icon('chat')}<div><h3>报销前，问一问</h3><p>查标准、问材料、了解流程</p></div><span class="arrow">${icon('arrow')}</span></button><button class="service-action" data-view="new">${icon('upload')}<div><h3>上传凭证，填报销</h3><p>核对信息，完成提交</p></div><span class="arrow">${icon('arrow')}</span></button><button class="service-action" data-view="mine">${icon('clock')}<div><h3>查看我的进度</h3><p>${pending} 笔待审核 · ${returned} 笔待补充</p></div><span class="arrow">${icon('arrow')}</span></button></div><div class="notice">${icon('shield')}这是本地演示入口。当前身份为示例员工，角色切换不代表真实权限校验，请使用测试资料体验。</div><div class="content-grid"><section class="panel"><div class="panel-head"><h2>我的近期报销</h2><button class="btn subtle" data-view="mine">查看全部${icon('arrow')}</button></div><div style="height:15px"></div>${expenseTable(rows.slice(0,5),true)}</section><section class="panel"><div class="panel-head"><h2>报销前准备好这三件事</h2></div><div class="check-list">${[['book','确认适用制度','核对出差、招待等费用的标准及审批要求。'],['invoice','保留完整凭证','发票、支付凭证与行程信息保持对应。'],['checkCircle','说明业务事由','明确时间、地点、项目和费用用途。']].map(([ic,t,p])=>`<div class="check-row">${icon(ic)}<div><h3>${t}</h3><p>${p}</p></div></div>`).join('')}</div></section></div>`;}
+function consultPage(){
+ const count=DEMO_KNOWLEDGE.docs.reduce((n,d)=>n+d.clauses.length,0);
+ const questions=['我去深圳出差，住宿费用多少？','深圳酒店600元一晚能报吗？','出差3天，提供了午餐，餐补多少？','报销8000元需要谁审批？','高铁一等座可以报销吗？','发票抬头和税号是什么？'];
+ return heading('报销咨询','按制度给答案，按条款看依据。')+`<div class="knowledge-notice">${icon('book')}<span><strong>${esc(DEMO_KNOWLEDGE.company)} · 虚构企业知识库</strong>已载入 ${DEMO_KNOWLEDGE.docs.length} 份制度、${count} 条条款，所有标准仅用于演示。</span><button class="btn subtle" data-view="knowledge">查看知识库${icon('arrow')}</button></div><div class="content-grid"><section class="panel chat-shell"><div class="chat-header"><span class="bot-avatar">${icon('bot')}</span><div><h2>财务小助手</h2><p>本地知识检索与规则计算 · 可查看原文出处</p></div></div><div class="chat-context"><label for="chat-role">你的职级</label><select id="chat-role">${DEMO_KNOWLEDGE.roles.map(r=>`<option ${chatContext.role===r?'selected':''}>${r}</option>`).join('')}</select><span id="chat-context-city">${chatContext.city?'当前城市：'+esc(chatContext.city):'在问题里告诉我出差城市'}</span><button class="link-button" data-action="reset-chat-context">重置条件</button></div><div id="chat-messages" class="chat-messages">${chatHTML()}</div><div class="suggestions">${['我去深圳出差，住宿费用多少？','那部门经理呢？','住三晚呢？'].map(q=>`<button class="suggestion" data-question="${q}">${q}</button>`).join('')}</div><div class="chat-input"><form id="chat-form"><input id="chat-text" aria-label="输入报销问题" placeholder="试试：深圳酒店600元一晚能报吗？" maxlength="500" required><button class="btn primary" type="submit">发送${icon('arrow')}</button></form><p>回答来自虚构制度和本地规则，未连接外部 AI；不构成真实审批结果。</p></div></section><div class="stack"><section class="panel"><div class="panel-head"><h2>直接试问一句</h2></div><div class="topic-list">${questions.map((q,i)=>`<button class="topic-item" data-question="${q}">${q}<small>${['查城市与职级对应的具体额度','计算超标金额与例外审批','计算补贴及已提供餐食的扣减','按金额匹配完整审批链','区分员工与高管交通标准','查看可用的虚构开票信息'][i]}</small></button>`).join('')}</div></section><section class="panel lodging-quick"><div class="panel-head"><h2>住宿标准速查</h2><span class="badge">虚构标准</span></div><div class="table-wrap"><table><thead><tr><th>城市类别</th>${DEMO_KNOWLEDGE.roles.map(r=>`<th>${esc(r)}</th>`).join('')}</tr></thead><tbody>${DEMO_KNOWLEDGE.lodgingTiers.map(t=>`<tr><td>${esc(t.name)}</td>${t.rates.map(rate=>`<td>¥ ${rate}</td>`).join('')}</tr>`).join('')}</tbody></table></div><p>含税 / 间·晚 · 凭票按实际费用报销<br>北京、上海、广州、深圳适用一线城市标准</p><button class="table-action" data-doc="kb-travel">查看城市清单和例外条款 →</button></section></div></div>`;
+}
+
+function chatHTML(){return`<div class="message"><span class="bot-avatar">${icon('bot')}</span><div class="bubble">你好，星澜能源的虚构报销制度已经准备好了。\n可以直接问我城市住宿额度、餐补、交通标准、报销时限或审批流程，也可以连续追问。\n\n例如：「我去深圳出差，住宿费用多少？」<span class="source-tag">默认按普通员工回答，可在上方切换职级。</span></div></div>`+chatMessages.map(m=>`<div class="message ${m.user?'user':''}">${m.user?'':`<span class="bot-avatar">${icon('bot')}</span>`}<div class="bubble">${esc(m.text)}${m.citations?.length?`<div class="source-tag citation-list"><span>依据 · 点击查看原文</span>${m.citations.map(c=>`<button class="citation" data-cite-doc="${esc(c.docId)}" data-cite-clause="${esc(c.clauseId)}">${icon('book')}${esc(c.clauseId)} · ${esc(c.title)}${icon('arrow')}</button>`).join('')}</div>`:m.source?`<span class="source-tag">${esc(m.source)}</span>`:''}</div></div>`).join('');}
+
+function askQuestion(q){q=q.trim();if(!q)return;const a=policyAnswer(q,chatContext);chatContext={...chatContext,...a.context};chatMessages.push({user:true,text:q},{user:false,text:a.text,source:a.source,citations:a.citations});state.logs.unshift({id:'QA'+Date.now(),person:'林悦',dept:'运营管理部',question:q,topic:a.topic,date:stamp().slice(0,10),resolved:a.resolved,answer:a.text,source:a.source,citations:a.citations,sample:false,context:{...chatContext},knowledgeVersion:DEMO_KNOWLEDGE.version});persist();document.getElementById('chat-messages').innerHTML=chatHTML();document.getElementById('chat-text').value='';document.getElementById('chat-role').value=chatContext.role;document.getElementById('chat-context-city').textContent=chatContext.city?'当前城市：'+chatContext.city:'在问题里告诉我出差城市';const box=document.getElementById('chat-messages');box.scrollTop=box.scrollHeight;}
+
+function fileChips(files){return files.map((f,i)=>`<div class="file-chip">${icon('invoice')}<span>${esc(f.name)}</span><small>${Math.max(1,Math.round(f.size/1024))} KB</small><button class="icon-btn" type="button" data-remove-file="${i}" aria-label="移除 ${esc(f.name)}">${icon('close')}</button></div>`).join('');}
+function newPage(){return heading(revisionId?'补正报销':'发起报销',revisionId?'修改原申请并重新提交，单号与处理历史将保留。':'填写费用信息，上传凭证，核对预审提示后提交。')+(revisionId?`<div class="notice warning"><div><strong>正在补正原单 ${esc(revisionId)}</strong><p>本次提交将更新原申请。取消补正会清空未提交的修改，保留原退回记录。</p><button class="btn" data-action="cancel-revision">取消补正，另开新单</button></div></div>`:'')+`<div class="steps"><div class="step active"><b>1</b>填写信息</div><div class="step"><b>2</b>核对预审</div><div class="step"><b>3</b>提交报销</div></div><div class="content-grid"><section class="panel form-panel"><h2>这笔费用，用在了哪里？</h2><p>${revisionId?'请按退回意见补充材料与说明，带 * 的项目为必填。':'带 * 的项目为必填。可先载入一份示例体验流程。'}</p><form id="expense-form"><div class="form-grid"><div class="field full"><label for="f-title">报销事项 <span class="required">*</span></label><input id="f-title" name="title" placeholder="例如：郑州项目调研差旅费用" maxlength="80" required></div><div class="field"><label for="f-dept">所属部门 <span class="required">*</span></label><select id="f-dept" name="dept">${depts.map(d=>`<option>${d}</option>`).join('')}</select></div><div class="field"><label for="f-category">费用类型 <span class="required">*</span></label><select id="f-category" name="category">${cats.map(d=>`<option>${d}</option>`).join('')}</select></div><div class="field"><label for="f-amount">报销金额（元） <span class="required">*</span></label><input id="f-amount" name="amount" type="number" min="0.01" max="99999999" step="0.01" placeholder="0.00" required></div><div class="field"><label for="f-date">费用发生日期 <span class="required">*</span></label><input id="f-date" name="date" type="date" value="2026-10-22" max="${stamp().slice(0,10)}" required></div><div class="field"><label for="f-invoice">发票号码</label><input id="f-invoice" name="invoiceNo" inputmode="numeric" maxlength="30" placeholder="请核对票面后填写"></div><div class="field"><label for="f-company">购买方抬头</label><input id="f-company" name="company" maxlength="100" placeholder="填写企业正式开票抬头"></div><div class="field full"><label for="f-note">费用用途 <span class="required">*</span></label><textarea id="f-note" name="note" rows="3" maxlength="1000" placeholder="说明项目、出差地点、时间与业务事由" required></textarea></div><div class="field full"><label>上传发票与附件</label><label class="dropzone">${icon('upload')}<strong>点击选择，或拖入凭证文件</strong><p>PDF、JPG、PNG、WebP · 每个不超过 10 MB · 最多 8 个</p><input id="expense-files" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" multiple aria-label="上传报销凭证"></label><div id="expense-file-list" class="file-list">${fileChips(newFiles)}</div><span class="receipt-warning">未启用 OCR：上传后请手动填写并核对票面字段。</span></div></div><div id="precheck-result"></div><div class="form-actions">${revisionId?'':'<button type="button" class="btn" data-action="sample-expense">载入示例</button>'}<button type="button" class="btn" data-action="save-draft">保存草稿</button><button class="btn primary" type="submit">核对并提交${icon('arrow')}</button></div></form></section><div class="stack"><section class="panel"><div class="panel-head"><h2>提交前，系统会检查</h2></div><div class="check-list">${[['checkCircle','基础信息完整','检查报销金额、日期与用途是否填写。'],['invoice','重复发票号','与当前演示空间已有报销记录比对。'],['folder','凭证是否齐全','提示缺失附件、发票号或购买方信息。'],['user','最终由财务复核','规则预审不代表合规认定或审批通过。']].map(([ic,t,p])=>`<div class="check-row">${icon(ic)}<div><h3>${t}</h3><p>${p}</p></div></div>`).join('')}</div></section><div class="notice">${icon('shield')}附件只保存在当前浏览器，不上传到外部服务。换设备或清除浏览器数据后无法继续访问。</div><button class="btn" data-view="consult">${icon('chat')}不确定怎么填？先问一问</button></div></div>`;}
+function rememberForm(){const form=document.getElementById('expense-form');if(form)formMemory=Object.fromEntries(new FormData(form));}
+function restoreForm(){Object.entries(formMemory).forEach(([k,v])=>{const input=document.getElementById('expense-form').elements.namedItem(k);if(input)input.value=v;});document.getElementById('expense-file-list').innerHTML=fileChips(newFiles);}
+function collectExpense(){const f=document.getElementById('expense-form');if(!f.reportValidity())return null;const vals=Object.fromEntries(new FormData(f));return {...vals,amount:Number(vals.amount)};}
+function precheck(v,files,excludedId=revisionId){const issues=[];if(state.expenses.some(r=>r.id!==excludedId&&r.invoiceNo&&r.invoiceNo===v.invoiceNo))issues.push('发票号码重复：请核对已有记录');if(!files.length)issues.push('缺少发票或附件');if(!v.invoiceNo)issues.push('未填写发票号码');if(!v.company)issues.push('未填写购买方抬头');return issues;}
+function showSubmitReview(){const v=collectExpense();if(!v)return;rememberForm();const issues=precheck(v,newFiles);const dialog=document.getElementById('detail');dialog.innerHTML=`<div class="detail-head"><div><h2 id="detail-title">核对预审结果</h2><p>确认信息后将进入财务待审核队列</p></div><button class="icon-btn" data-action="close-dialog" aria-label="关闭">${icon('close')}</button></div><div class="detail-body"><div class="detail-total"><p>${esc(v.title)}</p><strong>¥ ${money(v.amount)}</strong><span class="badge ${issues.length?'warn':''}">${issues.length?'发现 '+issues.length+' 项待核对':'基础字段检查通过'}</span></div><div class="notice ${issues.length?'warning':''}">${icon(issues.length?'warn':'checkCircle')}${issues.length?'你可以返回补充，也可以保留提示提交财务人工复核。':'仅完成资料与重复号检查，不代表票据验真或审批通过。'}</div>${issues.map(t=>`<div class="review-line warn">${icon('warn')}${esc(t)}</div>`).join('')}<dl class="detail-fields"><div><dt>费用类型</dt><dd>${esc(v.category)}</dd></div><div><dt>发生日期</dt><dd>${esc(v.date)}</dd></div><div><dt>所属部门</dt><dd>${esc(v.dept)}</dd></div><div><dt>凭证附件</dt><dd>${newFiles.length} 份</dd></div></dl><p class="small muted">${esc(v.note)}</p></div><div class="detail-actions"><button class="btn" data-action="close-dialog">返回修改</button><button class="btn primary" data-action="confirm-submit">确认提交（演示）</button></div>`;dialog.showModal();}
+function submitExpense(){const v=collectExpense();if(!v)return;const original=revisionId?state.expenses.find(r=>r.id===revisionId):null;if(revisionId&&(!original||original.status!=='returned'||!original.mine)){toast('原申请已不处于可补正状态，请取消补正后重新核对。');return;}const issues=precheck(v,newFiles);const history=[{text:original?'员工补正后重新提交（保留原单号）':'员工提交报销申请',date:stamp()},{text:issues.length?'规则预审发现待核对项：'+issues.join('；'):'规则预审完成，等待财务复核',date:stamp()}];let record;if(original){record=original;Object.assign(record,v,{status:'pending',issue:issues.join('；'),files:[...newFiles],history:[...original.history,...history]});}else{record={...v,id:'BX'+Date.now(),person:'林悦',status:'pending',issue:issues.join('；'),files:[...newFiles],mine:true,history};state.expenses.unshift(record);}state.draft=null;lastSubmitted=record.id;revisionId=null;newFiles=[];formMemory={};persist();document.getElementById('detail').close();navigate('submitted');toast(original?'原报销单已补正重提，单号与处理历史已保留':'报销已提交到本地演示待审队列');}
+function submittedPage(){const r=state.expenses.find(r=>r.id===lastSubmitted);if(!r)return employeePage();return heading('报销已提交','下一步由财务复核，你可以随时查看处理进度。')+`<section class="panel report-ready">${icon('checkCircle')}<h2>材料整理好了，交给财务吧。</h2><p>${esc(r.title)} · ¥ ${money(r.amount)}</p><p>申请编号：${r.id}</p><div class="heading-actions"><button class="btn primary" data-report="${r.id}">${icon('download')}下载报销报告</button><button class="btn" data-detail="${r.id}">查看申请详情</button><button class="btn" data-view="mine">我的报销</button></div></section><div class="notice" style="margin-top:22px">${icon('clock')}当前为演示提交。点击右上角「返回财务后台」即可查看并模拟审核这笔申请。</div>`;}
+function invoicesPage(){const receipts=state.receipts;return heading('发票中心','统一整理凭证，手动核对票面信息，保留每一份报销依据。',`<button class="btn" data-view="new">${icon('plus')}发起报销</button>`)+`<div class="notice warning">${icon('invoice')}发票识别尚未接入。当前支持本地上传、预览和信息登记，不自动识别、不验真。</div><div class="content-grid"><section class="panel form-panel"><h2>上传并登记发票</h2><p>文件留在当前浏览器，字段由你核对后录入。</p><form id="receipt-form"><div class="form-grid"><div class="field full"><label class="dropzone">${icon('upload')}<strong>选择发票文件</strong><p>PDF、JPG、PNG、WebP · 单个不超过 10 MB</p><input id="receipt-file" type="file" accept=".pdf,.jpg,.jpeg,.png,.webp" aria-label="选择发票文件" required></label><div id="receipt-file-label" class="file-list"></div></div><div class="field"><label for="r-number">发票号码 *</label><input id="r-number" name="invoiceNo" maxlength="30" required></div><div class="field"><label for="r-amount">价税合计（元） *</label><input id="r-amount" name="amount" type="number" min="0.01" max="99999999" step="0.01" required></div><div class="field full"><label for="r-company">购买方抬头 *</label><input id="r-company" name="company" maxlength="100" required></div></div><div class="form-actions"><button class="btn primary" id="save-receipt" type="submit">保存登记${icon('check')}</button></div></form></section><section class="panel"><div class="panel-head"><div><h2>已登记凭证</h2><p>${receipts.length} 份本地文件</p></div></div>${receipts.length?`<div class="topic-list">${receipts.map(r=>`<div class="topic-item"><div class="hot-top"><strong>${esc(r.file.name)}</strong><span class="badge">手工已核对</span></div><small>${esc(r.invoiceNo)} · ¥ ${money(r.amount)}</small><small>${esc(r.company)}</small><button class="table-action" data-file="${r.file.id}">打开凭证 →</button></div>`).join('')}</div>`:`<div class="empty">${icon('folder')}<h3>还没有登记的发票</h3><p>上传一份测试凭证，核对字段后保存。</p></div>`}</section></div>`;}
+function logsPage(){const rows=selectedLogs().filter(l=>!searchQuery||[l.question,l.person,l.topic].some(v=>v.includes(searchQuery)));return heading('咨询日志','每一次提问都有记录，让员工遇到的难题被看见。',filters()+`<button class="btn" data-action="export-logs">${icon('download')}导出日志</button>`)+`<section class="panel"><div class="filter-line"><div class="search">${icon('search')}<input id="log-search" aria-label="搜索咨询日志" placeholder="搜索问题、员工或主题" value="${esc(searchQuery)}"></div><span class="small muted">${rows.filter(r=>!r.resolved).length} 条待人工答复</span></div><div id="log-results">${logTable(rows)}</div></section>`;}
+function logTable(rows){return rows.length?`<div class="table-wrap"><table><thead><tr><th>员工问题</th><th>咨询人</th><th>问题分类</th><th>日期</th><th>处理状态</th><th>操作</th></tr></thead><tbody>${rows.map(r=>`<tr><td><span class="cell-title">${esc(r.question)}</span><span class="cell-sub">${r.id}${r.sample?' · 示例日志':''}</span></td><td>${esc(r.person)}<span class="cell-sub">${esc(r.dept)}</span></td><td>${esc(r.topic)}</td><td>${esc(r.date)}</td><td><span class="badge ${r.resolved?'':'warn'}">${r.resolved?'已提供指引':'待人工答复'}</span></td><td><button class="table-action" data-log="${r.id}">查看</button></td></tr>`).join('')}</tbody></table></div><div class="table-bottom">共 ${rows.length} 条 · 全部日志可导出 CSV</div>`:'<div class="empty"><h3>没有匹配的咨询</h3><p>更换筛选条件，或从员工入口发起提问。</p></div>';}
+function insightsPage(){const ranked=rankedTopics(),logs=selectedLogs(),top=ranked[0],open=logs.filter(l=>!l.resolved).length;return heading('把重复的问题，变成共同的知识。','从咨询记录中找到培训重点，减少下一次来回沟通。',filters()+`<button class="btn primary" data-action="training">${icon('download')}生成培训提纲</button>`)+`<div class="content-grid"><section class="panel"><div class="panel-head"><h2>高频问题分布</h2><span class="small muted">按咨询次数排序</span></div><div class="report-summary"><div><span>咨询总量</span><strong>${logs.length} <small class="small muted">次</small></strong></div><div><span>问题主题</span><strong>${ranked.length} <small class="small muted">类</small></strong></div><div><span>待人工答复</span><strong>${open} <small class="small muted">条</small></strong></div></div>${hotList()}<div class="hot-foot">统计口径：所选期间和部门内，按问题主题统计咨询记录条数。</div></section><section class="insight-panel" style="padding:28px"><div class="insight-head">${icon('spark')}本期培训建议</div><p>${top?`优先讲清楚<br><b>「${esc(top[0])}」</b>`:'积累更多咨询后再确定培训重点'}</p><div style="font-size:12px;line-height:1.9;color:#d4dfcd;margin:12px 0 24px">${top?`这一主题占本期咨询的 ${Math.round(top[1]/logs.length*100)}%。建议结合一份完整报销案例，说明材料清单、常见错误与例外处理。`:'可以先用员工入口提问，系统会将新的问题记录进咨询日志。'}</div><button data-action="training">下载可编辑的培训提纲${icon('arrow')}</button></section></div><section class="panel full-panel" style="margin-top:22px"><div class="panel-head"><h2>从问题到改进</h2></div><div class="analysis-row"><div><h3>把规则说清楚</h3><p>为高频主题补一页「可以报什么、要带什么、特殊情况找谁」指引。用虚构制度中的明确额度与审批链演练；真实上线时替换为企业现行标准。</p><button class="table-action" data-view="knowledge">查看制度知识库 →</button></div><div><h3>把未解答的接住</h3><p>目前有 ${open} 条咨询待人工答复。财务补充答复后，可作为下一轮知识完善的材料。</p><button class="table-action" data-view="logs">查看咨询日志 →</button></div></div></section>`;}
+function knowledgePage(){const count=DEMO_KNOWLEDGE.docs.reduce((n,d)=>n+d.clauses.length,0);return heading('制度知识库','完整虚构制度已就绪，可以查、可以问，也可以下载。',`<button class="btn" data-action="download-knowledge">${icon('download')}下载完整知识库</button><label class="btn primary" style="position:relative;overflow:hidden">${icon('upload')}上传制度<input id="knowledge-file" type="file" accept=".txt,.md,.pdf,.docx" style="position:absolute;inset:0;opacity:0;cursor:pointer" aria-label="上传制度文件"></label>`)+`<div class="knowledge-notice">${icon('book')}<span><strong>${esc(DEMO_KNOWLEDGE.company)} · V2.0</strong>${DEMO_KNOWLEDGE.docs.length} 份制度 · ${count} 条条款 · ${DEMO_KNOWLEDGE.docs.find(d=>d.id==='kb-cases')?.clauses.length||0} 个算例 · 2026-10-01 生效（虚构）</span><button class="btn subtle" data-action="open-consult">去试问${icon('arrow')}</button></div><div class="notice">${icon('shield')}这套标准由演示虚构，不代表中裕燃气或其他真实公司的规定。上传的 TXT / Markdown 可看全文；新文件尚未参与问答，PDF / Word 等待解析。</div><div class="panel knowledge-search-panel"><div class="search">${icon('search')}<input id="knowledge-search" aria-label="搜索制度条款" placeholder="搜索深圳、餐补、审批、发票，或条款编号 TR-02" value="${esc(knowledgeQuery)}"></div><span class="small muted">搜索覆盖完整条款正文</span></div><div id="knowledge-results">${knowledgeResults(knowledgeQuery)}</div>`;}
+function knowledgeResults(query=''){
+ const q=query.trim().toLowerCase();
+ if(q){const matches=[];for(const d of state.docs){if(d.clauses){for(const c of d.clauses)if([d.title,c.id,c.title,c.body,...(c.tags||[])].join(' ').toLowerCase().includes(q))matches.push({doc:d,clause:c});}else if([d.title,d.content].join(' ').toLowerCase().includes(q))matches.push({doc:d});}
+ return`<p class="knowledge-result-count">找到 ${matches.length} 条结果</p><div class="knowledge-result-list">${matches.map(({doc:d,clause:c})=>`<article class="panel knowledge-result"><span class="badge">${c?esc(c.id):'用户文档'}</span><h2><button class="link-button" ${c?`data-cite-doc="${esc(d.id)}" data-cite-clause="${esc(c.id)}"`:`data-doc="${esc(d.id)}"`}>${esc(c?c.title:d.title)}</button></h2><p>${esc((c?c.body:d.content||'').slice(0,230))}${(c?c.body:d.content||'').length>230?'…':''}</p><small>${esc(d.title)}</small></article>`).join('')||'<div class="empty"><h3>暂未找到对应条款</h3><p>试试“住宿”“审批”或条款编号。</p></div>'}</div>`;
+ }
+ return`<div class="knowledge-grid">${state.docs.map(d=>`<article class="panel doc-card"><div class="doc-top"><span class="doc-icon">${icon('book')}</span><span class="badge ${d.pending?'warn':''}">${d.pending?'待解析':d.builtin?'已用于问答':esc(d.type)}</span></div><h2>${esc(d.title)}</h2><p>${esc(d.summary||(d.pending?'原文件已保存在本浏览器，尚未提取正文。':'文件正文可查看；尚未用于智能问答检索。'))}</p><div class="doc-meta">${d.clauses?`${d.clauses.length} 条条款 · ${esc(d.version)}`:esc(d.size)}</div><div class="doc-bottom"><span>${esc(d.date)}</span><button class="table-action" data-doc="${esc(d.id)}">${d.pending?'下载原文':'查看全文'} →</button></div></article>`).join('')}</div>`;
+}
+
+function settingsPage(){return heading('连接与设置','明确当前能力，也为下一步接入企业系统留好位置。')+`<div class="notice warning">${icon('shield')}这是浏览器本地演示，没有登录鉴权、多人同步或真实付款功能。切换角色仅用于查看不同界面。</div><section class="panel"><div class="panel-head"><h2>企业服务连接</h2><span class="badge gray">尚未连接外部服务</span></div><div class="integration-list">${[['bot','WorkBuddy 智能体','需要确认企业可用的接入方式，再配置受保护的服务端调用。'],['invoice','发票 OCR 与验真','需要可用的识别/验真服务，当前由用户手动录入并核对。'],['book','企业制度检索','当前已提供完整虚构制度和条款引用；真实文件解析、权限化检索与模型服务待接入。'],['branch','OA / ERP 审批与付款','需要审批流、部门权限、员工身份与系统接口。']].map(([ic,t,p])=>`<div class="integration">${icon(ic)}<div><h3>${t}</h3><p>${p}</p></div><span class="badge gray">待接入</span></div>`).join('')}</div></section><section class="panel full-panel" style="margin-top:22px"><div class="panel-head"><h2>本地演示数据</h2></div><div class="analysis-row"><div><h3>下载结构化备份</h3><p>导出报销记录、咨询日志、制度正文和凭证登记信息。原始二进制附件需单独下载。</p><button class="btn" data-action="backup" style="margin-top:15px">${icon('download')}导出 JSON 备份</button></div><div><h3>需要正式上线时</h3><p>准备企业制度、开票信息、费用标准、审批权限、接入账户与部署环境。真实报销数据应放在有访问控制的服务端。</p><button class="table-action" data-action="implementation">下载接入清单 →</button></div></div></section>`;}
+function reportPage(){const rows=selectedRows();return heading('报销汇总报告','当前筛选范围内的报销记录与处理状态。',filters()+`<button class="btn" data-action="export-csv">${icon('download')}导出 CSV</button><button class="btn primary" data-action="print">打印 / PDF</button>`)+kpis(rows)+`<section class="panel"><div class="panel-head"><h2>费用明细</h2></div><div style="height:16px"></div>${expenseTable(rows)}</section>`;}
+function showDetail(id){const r=state.expenses.find(r=>r.id===id);if(!r)return;selectedId=id;const dialog=document.getElementById('detail');dialog.innerHTML=`<div class="detail-head"><div><h2 id="detail-title">报销详情</h2><p>${esc(r.id)}</p></div><button class="icon-btn" data-action="close-dialog" aria-label="关闭详情">${icon('close')}</button></div><div class="detail-body"><div class="detail-total"><p>${esc(r.title)}</p><strong class="num">¥ ${money(r.amount)}</strong>${statusBadge(r.status)}</div><dl class="detail-fields"><div><dt>申请人</dt><dd>${esc(r.person)}</dd></div><div><dt>所属部门</dt><dd>${esc(r.dept)}</dd></div><div><dt>费用类型</dt><dd>${esc(r.category)}</dd></div><div><dt>费用发生日期</dt><dd>${esc(r.date)}</dd></div><div><dt>发票号码</dt><dd>${esc(r.invoiceNo||'未填写')}</dd></div><div><dt>购买方抬头</dt><dd>${esc(r.company||'未填写')}</dd></div></dl><h3>费用说明</h3><p class="small muted" style="margin-top:9px;white-space:pre-wrap">${esc(r.note)}</p><section class="detail-section"><h3>规则预审</h3><div class="review-line">${icon('checkCircle')}金额、日期与事由已登记</div>${r.issue?`<div class="review-line warn">${icon('warn')}<span>${esc(r.issue)}</span></div>`:`<div class="review-line">${icon('checkCircle')}未发现字段异常，仍需核对原始凭证</div>`}<p class="small muted" style="margin-top:8px">未执行 OCR、税务验真、费用限额或企业制度匹配。</p></section><section class="detail-section"><h3>凭证附件 <span class="muted small">${r.files.length} 份</span></h3>${r.files.length?r.files.map(f=>`<div class="file-chip">${icon('invoice')}<span>${esc(f.name)}</span>${f.sample?'<small>示例占位</small>':`<button class="table-action" data-file="${f.id}">打开</button>`}</div>`).join(''):'<p class="small muted">未上传附件</p>'}</section><section class="detail-section"><h3>处理日志</h3><ol class="timeline">${r.history.map(h=>`<li>${esc(h.text)}<time>${esc(h.date)}</time></li>`).join('')}</ol></section></div><div id="reject-container"></div><div class="detail-actions"><button class="btn" data-report="${r.id}">${icon('download')}报告</button>${role==='finance'&&r.status==='pending'?'<button class="btn danger" data-action="show-reject">退回补充</button><button class="btn primary" data-action="approve">模拟审核通过</button>':''}${r.status==='returned'&&r.mine&&role==='employee'?'<button class="btn primary" data-action="revise">补充后重新提交</button>':''}</div>`;if(!dialog.open)dialog.showModal();}
+function reviewExpense(action,reason=''){const r=state.expenses.find(r=>r.id===selectedId);if(!r||r.status!=='pending'||role!=='finance')return;r.status=action==='approve'?'approved':'returned';r.history.push({text:action==='approve'?'财务模拟审核通过，等待支付（未触发真实审批/付款）':'财务退回补充：'+reason,date:stamp()});persist();document.getElementById('detail').close();shell();render();toast(action==='approve'?'模拟审核通过，已更新为待支付':'已退回，补充原因已写入处理日志');}
+function showLog(id){const l=state.logs.find(l=>l.id===id);if(!l)return;const dialog=document.getElementById('detail');dialog.innerHTML=`<div class="detail-head"><div><h2 id="detail-title">咨询详情</h2><p>${esc(l.person)} · ${esc(l.dept)} · ${esc(l.date)}</p></div><button class="icon-btn" data-action="close-dialog" aria-label="关闭">${icon('close')}</button></div><div class="detail-body"><h3>员工问题</h3><p style="margin-top:12px">${esc(l.question)}</p><section class="detail-section"><h3>提供的指引</h3><div class="doc-body">${esc(l.answer)}</div><p class="source-tag">${esc(l.source)}</p></section>${!l.resolved?`<section class="detail-section"><h3>补充人工答复</h3><form id="reply-form" data-log-id="${l.id}"><label class="field"><span>答复内容</span><textarea name="reply" rows="5" maxlength="2000" required placeholder="请依据正式制度填写答复，并注明出处。"></textarea></label><button class="btn primary" style="margin-top:15px">保存答复（演示）</button></form></section>`:'<p class="small muted" style="margin-top:25px">该条已提供指引，不代表实际审批结果。</p>'}</div>`;dialog.showModal();}
+function showDoc(id,clauseId=''){const d=state.docs.find(d=>d.id===id);if(!d)return;if(d.pending){openFile(d.file.id);return;}const dialog=document.getElementById('detail');dialog.innerHTML=`<div class="detail-head"><div><h2 id="detail-title">${esc(d.title)}</h2><p>${esc(d.type)} · ${esc(d.version||'')} · ${esc(d.date)}</p></div><button class="icon-btn" data-action="close-dialog" aria-label="关闭">${icon('close')}</button></div><div class="detail-body">${d.builtin?`<div class="notice">${icon('book')}星澜能源虚构制度，仅用于体验；不代表真实企业规定。</div><p class="small muted">${esc(d.summary)}</p><nav class="clause-index" aria-label="文档条款目录">${d.clauses.map(c=>`<button data-jump-clause="${esc(c.id)}">${esc(c.id)} ${esc(c.title)}</button>`).join('')}</nav>${d.clauses.map(c=>`<section class="knowledge-clause ${clauseId===c.id?'highlight':''}" id="clause-${esc(c.id)}"><h3>${esc(c.id)} · ${esc(c.title)}</h3><div class="doc-body">${esc(c.body)}</div></section>`).join('')}`:`<div class="doc-body">${esc(d.content)}</div>`}</div><div class="detail-actions"><button class="btn" data-download-doc="${esc(d.id)}">${icon('download')}下载正文</button></div>`;if(!dialog.open)dialog.showModal();if(clauseId)document.getElementById('clause-'+clauseId)?.scrollIntoView({block:'center'});}
+
+function download(name,content,type='text/plain;charset=utf-8'){const blob=content instanceof Blob?content:new Blob([content],{type});const url=URL.createObjectURL(blob);const a=document.createElement('a');a.href=url;a.download=name;document.body.append(a);a.click();a.remove();setTimeout(()=>URL.revokeObjectURL(url),15000);}
+function csvCell(v){let s=String(v??'');if(/^[\s]*[=+@\-]/.test(s))s="'"+s;return '"'+s.replace(/"/g,'""')+'"';}
+function toCSV(rows){return '\uFEFF'+rows.map(r=>r.map(csvCell).join(',')).join('\r\n');}
+function exportExpenses(){const rows=view==='expenses'||view==='mine'?filteredExpenses():selectedRows();const headings=['报销单号','事项','申请人','部门','费用类型','日期','金额(元)','状态','预审提示','发票号','用途'];download('报销明细_'+period+'.csv',toCSV([headings,...rows.map(r=>[r.id,r.title,r.person,r.dept,r.category,r.date,r.amount,({pending:'待审核',returned:'已退回',approved:'待支付',paid:'已支付'})[r.status],r.issue||'未发现字段异常',r.invoiceNo,r.note])]),'text/csv;charset=utf-8');toast('已导出当前筛选范围的 '+rows.length+' 笔明细');}
+function exportLogs(){const rows=selectedLogs().filter(l=>!searchQuery||[l.question,l.person,l.topic].some(v=>v.includes(searchQuery)));download('报销咨询日志_'+period+'.csv',toCSV([['编号','咨询人','部门','日期','问题','主题','状态','答复','出处'],...rows.map(l=>[l.id,l.person,l.dept,l.date,l.question,l.topic,l.resolved?'已提供指引':'待人工答复',l.answer,l.source])]),'text/csv;charset=utf-8');toast('已导出 '+rows.length+' 条咨询日志');}
+function downloadReport(id){const r=state.expenses.find(r=>r.id===id);if(!r)return;const status=({pending:'待审核',returned:'已退回',approved:'待支付',paid:'已支付'})[r.status];const html=`<!doctype html><html lang="zh-CN"><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1"><title>报销报告 ${esc(r.id)}</title><style>body{font:14px/1.8 -apple-system,"PingFang SC",sans-serif;color:#233c33;max-width:820px;padding:45px 25px;margin:auto}h1{font-size:27px}h2{font-size:17px;border-bottom:1px solid #ddd;padding-bottom:10px;margin-top:30px}table{border-collapse:collapse;width:100%}td{padding:10px;border-bottom:1px solid #eee}td:first-child{width:130px;color:#647366}p{white-space:pre-wrap}.notice{background:#f1f5eb;padding:15px;font-size:12px}button{padding:9px 16px;border:0;background:#163e35;color:white;border-radius:6px;cursor:pointer}@media print{button{display:none}body{padding:0}}</style><h1>报销申请报告</h1><p>${esc(r.id)} · 生成时间 ${stamp()}</p><div class="notice">本报告来自交互演示空间，不是正式审批或付款凭证。金额、票据与制度适用性需人工复核。</div><h2>${esc(r.title)}</h2><table>${[['申请人',r.person],['部门',r.dept],['费用类型',r.category],['发生日期',r.date],['申请金额','¥ '+money(r.amount)],['当前状态',status],['发票号码',r.invoiceNo||'未填写'],['购买方抬头',r.company||'未填写'],['预审提示',r.issue||'未发现字段异常；不代表税务验真或审批通过']].map(([k,v])=>`<tr><td>${k}</td><td>${esc(v)}</td></tr>`).join('')}</table><h2>费用说明</h2><p>${esc(r.note)}</p><h2>附件清单</h2><ul>${r.files.map(f=>`<li>${esc(f.name)}${f.sample?'（示例占位）':''}</li>`).join('')||'<li>未上传附件</li>'}</ul><h2>处理日志</h2><ol>${r.history.map(h=>`<li>${esc(h.date)} · ${esc(h.text)}</li>`).join('')}</ol><button onclick="window.print()">打印 / 保存为 PDF</button></html>`;download('报销报告_'+r.id+'.html',html,'text/html;charset=utf-8');toast('已下载报销报告，可打开后打印为 PDF');}
+function trainingContent(){const ranked=rankedTopics(),logs=selectedLogs();return `# 星澜能源员工报销培训提纲（虚构）\n\n${DEMO_KNOWLEDGE.disclaimer}\n制度版本：${DEMO_KNOWLEDGE.version}\n生成时间：${stamp()}\n统计期间：${period==='quarter'?'2026 年 8–10 月':period}\n部门：${department==='all'?'全部部门':department}\n数据范围：${logs.length} 条咨询记录。按主题频次归纳，并引用当前虚构制度。\n\n## 培训目标\n掌握费用额度、资料要求、例外流程和提交时限，减少反复补件。\n\n## 重点主题\n${ranked.map(([t,n],i)=>{const item=logs.find(l=>l.topic===t),q=item?.question||t;const a=item?.answer?{text:item.answer,source:item.source}:policyAnswer(q,item?.context||{});return `\n### ${i+1}. ${t}（${n} 次，${logs.length?Math.round(n/logs.length*100):0}%）\n常见提问：${q}\n\n${a.text}\n\n制度出处：${a.source}\n`;}).join('')}\n## 互动演练\n1. 普通员工去深圳住 2 晚，每晚 420 元：申请 840 元，住宿上限 900 元。\n2. 普通员工深圳住宿每晚 600 元：超标 150 元，超标比例 33.3%，按 TR-03 走事前例外审批。\n3. 出差 3 天、每天提供午餐：餐补 3 × (100 − 40) = 180 元。\n\n## 建议议程（30 分钟）\n5 分钟：事前申请；10 分钟：高频条款；10 分钟：案例演练；5 分钟：答疑与复盘。\n\n## 待人工答复\n${logs.filter(l=>!l.resolved).map(l=>'- '+l.question).join('\n')||'本期无待答复记录。'}\n\n完整制度可在知识库中下载。所有标准均为虚构，不可直接用于真实企业审批。\n`;}
+
+async function addFiles(list,target){const arr=Array.from(list);const maxCount=target==='expense'?8:1;if(arr.length+(target==='expense'?newFiles.length:0)>maxCount){toast('最多选择 '+maxCount+' 个文件');return;}if(arr.some(f=>f.size>10*1024*1024||!(/\.(pdf|jpe?g|png|webp)$/i.test(f.name)))){toast('请上传 10 MB 以内的 PDF、JPG、PNG 或 WebP');return;}const input=document.getElementById(target==='expense'?'expense-files':'receipt-file');input.disabled=true;const submit=document.querySelector(target==='expense'?'#expense-form button[type="submit"]':'#save-receipt');submit.disabled=true;try{const stored=[];for(const f of arr)stored.push(await putFile(f));if(target==='expense'){newFiles.push(...stored);document.getElementById('expense-file-list').innerHTML=fileChips(newFiles);}else{invoiceFiles=stored;document.getElementById('receipt-file-label').innerHTML=stored.map(f=>`<div class="file-chip">${icon('invoice')}<span>${esc(f.name)}</span><small>已保存在本地</small></div>`).join('');}toast('凭证已保存，请手动核对票面字段');}catch{toast('本地文件保存失败，请检查浏览器存储权限后重试');input.value='';}finally{input.disabled=false;submit.disabled=false;}}
+async function openFile(id){try{const file=await getFile(id);if(!file){toast('本浏览器未找到原文件，请重新上传');return;}download(file.name,file);toast('已下载原始凭证，可从下载列表打开');}catch{toast('读取文件失败，请检查浏览器存储权限');}}
+async function uploadKnowledge(file){if(!file)return;if(file.size>10*1024*1024||!/\.(txt|md|pdf|docx)$/i.test(file.name)){toast('请上传 10 MB 以内的 TXT、MD、PDF 或 DOCX');return;}try{const meta=await putFile(file);const textable=/\.(txt|md)$/i.test(file.name);if(textable&&file.size>1024*1024){toast('文本制度请控制在 1 MB 内，较大文档请使用 PDF');return;}const content=textable?await file.text():'';state.docs.unshift({id:crypto.randomUUID(),title:file.name,type:'用户上传',date:stamp().slice(0,10),size:Math.max(1,Math.round(file.size/1024))+' KB',content,pending:!textable,file:meta});persist();render();toast(textable?'制度正文已保存，可查看全文':'原文件已保存，等待接入解析服务');}catch{toast('上传失败，请检查本地存储权限后重试');}}
+function bindPage(){document.getElementById('chat-role')?.addEventListener('change',e=>{chatContext={...chatContext,role:e.target.value};});document.getElementById('knowledge-search')?.addEventListener('input',e=>{knowledgeQuery=e.target.value;document.getElementById('knowledge-results').innerHTML=knowledgeResults(knowledgeQuery);});document.getElementById('period-filter')?.addEventListener('change',e=>{period=e.target.value;currentPage=1;render();});document.getElementById('dept-filter')?.addEventListener('change',e=>{department=e.target.value;currentPage=1;render();});document.getElementById('expense-search')?.addEventListener('input',e=>{searchQuery=e.target.value;currentPage=1;document.getElementById('expense-results').innerHTML=expenseResults(filteredExpenses());});document.getElementById('log-search')?.addEventListener('input',e=>{searchQuery=e.target.value;document.getElementById('log-results').innerHTML=logTable(selectedLogs().filter(l=>[l.question,l.person,l.topic].some(v=>v.includes(searchQuery))));});document.getElementById('chat-form')?.addEventListener('submit',e=>{e.preventDefault();askQuestion(document.getElementById('chat-text').value);});document.getElementById('expense-form')?.addEventListener('submit',e=>{e.preventDefault();showSubmitReview();});document.getElementById('expense-files')?.addEventListener('change',e=>addFiles(e.target.files,'expense'));document.getElementById('receipt-file')?.addEventListener('change',e=>addFiles(e.target.files,'receipt'));document.getElementById('knowledge-file')?.addEventListener('change',e=>uploadKnowledge(e.target.files[0]));document.getElementById('receipt-form')?.addEventListener('submit',e=>{e.preventDefault();if(!invoiceFiles.length){toast('请先上传发票文件');return;}const v=Object.fromEntries(new FormData(e.target));if(state.receipts.some(r=>r.invoiceNo===v.invoiceNo)){toast('此发票号码已登记，请核对后再保存');return;}state.receipts.unshift({...v,id:crypto.randomUUID(),amount:Number(v.amount),file:invoiceFiles[0],date:stamp().slice(0,10)});invoiceFiles=[];persist();render();toast('发票信息已登记');});}
+document.addEventListener('click',e=>{const b=e.target.closest('button,a[data-view]');if(!b)return;
+ if(b.dataset.citeDoc){showDoc(b.dataset.citeDoc,b.dataset.citeClause);return;}
+ if(b.dataset.jumpClause){document.getElementById('clause-'+b.dataset.jumpClause)?.scrollIntoView({block:'center'});return;}
+ if(b.dataset.view){e.preventDefault();navigate(b.dataset.view);return;}
+ if(b.dataset.status){statusFilter=b.dataset.status;currentPage=1;render();return;}
+ if(b.dataset.queue){navigate('expenses');statusFilter=b.dataset.queue;render();return;}
+ if(b.dataset.detail){showDetail(b.dataset.detail);return;}
+ if(b.dataset.report){downloadReport(b.dataset.report);return;}
+ if(b.dataset.log){showLog(b.dataset.log);return;}
+ if(b.dataset.doc){showDoc(b.dataset.doc);return;}
+ if(b.dataset.downloadDoc){const d=state.docs.find(d=>d.id===b.dataset.downloadDoc);if(d)download(d.title+(d.builtin?'.md':'.txt'),d.content);return;}
+ if(b.dataset.file){openFile(b.dataset.file);return;}
+ if(b.dataset.question){askQuestion(b.dataset.question);return;}
+ if(b.dataset.page){currentPage=Number(b.dataset.page);document.getElementById('expense-results').innerHTML=expenseResults(filteredExpenses());return;}
+ if(b.dataset.removeFile!==undefined){newFiles.splice(Number(b.dataset.removeFile),1);document.getElementById('expense-file-list').innerHTML=fileChips(newFiles);return;}
+ const a=b.dataset.action;if(!a)return;
+ if(a==='download-knowledge'){download('星澜能源_财务报销制度知识库.md',knowledgeMarkdown());toast('完整虚构知识库已下载');}
+ if(a==='open-consult'){role='employee';navigate('consult');}
+ if(a==='reset-chat-context'){chatContext={role:DEMO_KNOWLEDGE.defaultRole,city:''};chatMessages=[];render();}
+ if(a==='menu'){document.getElementById('sidebar').classList.add('open');document.querySelector('.menu-scrim').classList.add('open');}
+ if(a==='close-menu'){document.getElementById('sidebar').classList.remove('open');document.querySelector('.menu-scrim').classList.remove('open');}
+ if(a==='switch-role'){role=role==='finance'?'employee':'finance';department='all';period='2026-10';navigate(role==='finance'?'overview':'employee');}
+ if(a==='new-expense')navigate('new');
+ if(a==='close-dialog')document.getElementById('detail').close();
+ if(a==='export-csv')exportExpenses();
+ if(a==='export-logs')exportLogs();
+ if(a==='print')window.print();
+ if(a==='training'){download('员工报销培训提纲_'+period+'.md',trainingContent());toast('培训提纲已生成并下载');}
+ if(a==='backup'){download('财务演示数据_'+stamp().slice(0,10)+'.json',JSON.stringify(state,null,2),'application/json');toast('记录已备份，二进制附件需单独下载');}
+ if(a==='implementation'){download('智能财务工作台_接入清单.md','# 生产接入清单\n\n当前版本：本地交互演示，未连接真实服务。\n\n## 企业数据\n- 正式财务制度与版本/生效日\n- 开票抬头、税号主数据\n- 费用标准、部门、人员、预算\n- 审批权限与流程\n\n## 服务与部署\n- 企业身份认证与按角色、部门的数据授权\n- 受保护的后端数据库及附件存储\n- OCR 提取、字段确认、票据验真、重复检查\n- 真实制度解析、权限化检索与带引用回答\n- 根据企业 WorkBuddy 环境确认可用接入方式\n- OA/ERP 审批接口和审计日志\n- 日志脱敏、备份、保留期限与监控\n\n## 验收\n员工提交→预审→人工复核→退回重提→系统回执，验证权限隔离、重复提交、失败恢复、金额一致性。\n\n前端不应存储服务端 API 密钥。');toast('接入清单已下载');}
+ if(a==='sample-expense'){formMemory={title:'郑州项目调研差旅费用',dept:'运营管理部',category:'差旅交通',amount:'1286.50',date:'2026-10-22',invoiceNo:'DEMO-'+Date.now().toString().slice(-8),company:'星澜能源科技有限公司（虚构）',note:'10 月 20–22 日前往郑州进行项目调研，费用包含往返交通及市内公务出行。示例数据，仅用于流程体验。'};newFiles=[{id:'sample-new',name:'示例交通电子发票.pdf',size:246000,sample:true}];restoreForm();document.getElementById('expense-file-list').innerHTML=fileChips(newFiles);toast('已填入示例信息，附件为演示占位');}
+ if(a==='save-draft'){rememberForm();state.draft={values:{...formMemory},files:[...newFiles],revisionId};if(persist())toast(revisionId?'补正草稿已保存，下次继续使用原单号':'草稿已保存到本浏览器');}
+ if(a==='cancel-revision'){revisionId=null;formMemory={};newFiles=[];state.draft=null;persist();render();toast('已退出补正，原退回申请保留；现在可以另开新单');}
+ if(a==='confirm-submit')submitExpense();
+ if(a==='approve')reviewExpense('approve');
+ if(a==='show-reject'){document.getElementById('reject-container').innerHTML='<form id="reject-form" class="reject-form"><label for="reject-reason">请填写需要补充的内容 *</label><textarea id="reject-reason" rows="3" required maxlength="500" placeholder="例如：请补充 10 月 21 日的网约车行程单。"></textarea><button class="btn danger" style="margin-top:10px">确认退回（演示）</button></form>';document.getElementById('reject-reason').focus();}
+ if(a==='revise'){const r=state.expenses.find(r=>r.id===selectedId);if(r&&r.mine&&r.status==='returned'){revisionId=r.id;formMemory={title:r.title,dept:r.dept,category:r.category,amount:String(r.amount),date:r.date,invoiceNo:r.invoiceNo,company:r.company,note:r.note+'\n补充说明：'};newFiles=[...r.files];document.getElementById('detail').close();navigate('new');toast('正在补正原申请，提交后保留原单号与处理历史');}}
+});
+document.addEventListener('submit',e=>{if(e.target.id==='reject-form'){e.preventDefault();const reason=document.getElementById('reject-reason').value.trim();if(!reason){toast('请填写退回原因');return;}reviewExpense('reject',reason);}if(e.target.id==='reply-form'){e.preventDefault();const l=state.logs.find(l=>l.id===e.target.dataset.logId);const reply=new FormData(e.target).get('reply').trim();if(l&&reply){l.answer=reply;l.source='财务人工补充（演示） · '+stamp();l.resolved=true;persist();document.getElementById('detail').close();render();toast('答复已保存到本地咨询日志');}}});
+document.getElementById('detail').addEventListener('click',e=>{if(e.target.id==='detail'){const r=e.target.getBoundingClientRect();if(e.clientX<r.left||e.clientX>r.right||e.clientY<r.top||e.clientY>r.bottom)e.target.close();}});
+document.addEventListener('keydown',e=>{if(e.key==='Escape'){document.getElementById('sidebar').classList.remove('open');document.querySelector('.menu-scrim')?.classList.remove('open');}});
+shell();render();
+</script>
+</body>
+</html>

@@ -1,0 +1,10 @@
+const fs=require('node:fs');
+const path=require('node:path');
+const root=path.resolve(__dirname,'..');
+let html=fs.readFileSync(path.join(root,'dist/index.html'),'utf8');
+html=html.replace(/<link rel="stylesheet" href="styles\.css(?:\?[^"]*)?">/,'<style>'+fs.readFileSync(path.join(root,'dist/styles.css'),'utf8')+'</style>');
+html=html.replace(/\s*<script src="(?:knowledge-data|knowledge-engine|app)\.js(?:\?[^"]*)?" defer><\/script>/g,'');
+const scripts=['knowledge-data.js','knowledge-engine.js','app.js'].map(f=>fs.readFileSync(path.join(root,'dist',f),'utf8')).join('\n').replace(/<\/script/gi,'<\\/script');
+html=html.replace('</body>','<script>'+scripts+'</script>\n</body>');
+fs.writeFileSync(path.join(root,'智能财务预审工作台.html'),html);
+console.log('Standalone HTML updated.');
